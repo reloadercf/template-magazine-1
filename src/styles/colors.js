@@ -10,10 +10,10 @@ export const tan = '#fcf8f2'
 export const thoughtbotRed = '#ed3e44'
 export const transparent = 'rgba(0, 0, 0, 0)'
 export const white = '#ffffff'
-
 export const baseText = darkGray
 export const darkText = darkestGray
 export const sectionBackground = lightWarmGray
 export const background = white
 export const selected = thoughtbotRed
 export const unselected = lightGray
+
