@@ -1,12 +1,13 @@
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
-import HomeScreen from './Revista'
+import HomeScreen from '../autenticados/Revista';
 
 
-const AppNavigator = createStackNavigator({
+
+const RutasNoAutenticadas = createStackNavigator({
   Home: {
     screen: HomeScreen,
   },
 });
 
-export default createAppContainer(AppNavigator);
+export default createAppContainer(RutasNoAutenticadas);
