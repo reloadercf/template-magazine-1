@@ -6,6 +6,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 
 class HomeScreen extends React.Component {
   render() {
+    console.log(this.props)
     return (
       <ImageBackground source={fondoZona} style={{ width: '100%', height: '100%' }}>
 
@@ -21,6 +22,12 @@ class HomeScreen extends React.Component {
           </View>
           <View style={{ height: 100, backgroundColor: 'skyblue' }} >
             <Button
+            onPress={() => {
+              this.props.navigation.openDrawer();
+              setTimeout(() => {
+                this.props.navigation.closeDrawer();
+              }, 3000);
+            }}
               icon={
                 <Icon
                   name="arrow-right"

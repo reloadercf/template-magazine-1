@@ -6,7 +6,6 @@ import RutasAutenticadas from './src/screens/RutasAutenticadas';
 import SplashScreen from 'react-native-splash-screen'
 
 
-
 const App=()=>{
   
   useEffect(()=>{
