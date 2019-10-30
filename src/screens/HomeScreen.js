@@ -16,18 +16,13 @@ class HomeScreen extends React.Component {
           justifyContent: 'space-around',
           alignItems: 'stretch',
         }}>
-      
-          <View style={{height: 100}} >
-              <Text style={{color:'white'}}>Selecciona la zona donde quieres encontrar las oportunidades</Text>
+
+          <View style={{ height: 100 }} >
+            <Text style={{ color: 'white' }}>Selecciona la zona donde quieres encontrar las oportunidades</Text>
           </View>
           <View style={{ height: 100, backgroundColor: 'skyblue' }} >
             <Button
-            onPress={() => {
-              this.props.navigation.openDrawer();
-              setTimeout(() => {
-                this.props.navigation.closeDrawer();
-              }, 3000);
-            }}
+             onPress={() => this.props.navigation.navigate('Revista')}
               icon={
                 <Icon
                   name="arrow-right"

@@ -1,9 +1,6 @@
 import React from 'react'
 import { createAppContainer } from 'react-navigation';
-import { createStackNavigator } from 'react-navigation-stack';
 import {createDrawerNavigator} from 'react-navigation-drawer'
-import HomeScreen from './Revista';
-import Screen from './Screen';
 import HeaderDefault from '../components/HeaderDefault'
 import SideBar from '../components/SideBar';
 
@@ -18,7 +15,7 @@ const Screen4 =({navigation})=> <HeaderDefault navigation={navigation} name="Scr
 
 
 
-const RutasNoAutenticadas = createDrawerNavigator({
+const DrawerRevista = createDrawerNavigator({
   Screen1,
   Screen2,
   Screen3,
@@ -29,4 +26,4 @@ const RutasNoAutenticadas = createDrawerNavigator({
 }
 );
 
-export default createAppContainer(RutasNoAutenticadas);
+export default createAppContainer(DrawerRevista);
