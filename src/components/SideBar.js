@@ -1,7 +1,6 @@
 import React from 'react'
-import {View,Text,StyleSheet, ScrollView, ImageBackground, Image, Dimensions} from 'react-native'
+import {View,StyleSheet, ScrollView, ImageBackground, Image, Dimensions} from 'react-native'
 import {DrawerNavigatorItems} from 'react-navigation-drawer'
-import {Ionicons} from 'react-native-vector-icons/Ionicons'
 import mexico from '../assets/mexico.png'
 
 export default SideBar= props =>(

@@ -1,28 +1,37 @@
 import React from 'react';
-import { View, Text, ImageBackground } from 'react-native';
+import { StyleSheet, View, Text, ImageBackground } from 'react-native';
 import fondoZona from '../assets/fondoZona.png'
-import { Button } from 'react-native-elements';
+import { Button, Input } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 class HomeScreen extends React.Component {
   render() {
     console.log(this.props)
     return (
-      <ImageBackground source={fondoZona} style={{ width: '100%', height: '100%' }}>
-
-        <View style={{
-          flex: 1,
-          flexDirection: 'column',
-          justifyContent: 'space-around',
-          alignItems: 'stretch',
-        }}>
-
-          <View style={{ height: 100 }} >
+      <ImageBackground source={fondoZona} style={styles.imageBackground}>
+        <View style={styles.container}>
+          <View >
             <Text style={{ color: 'white' }}>Selecciona la zona donde quieres encontrar las oportunidades</Text>
           </View>
-          <View style={{ height: 100, backgroundColor: 'skyblue' }} >
+          <View>
+            <Input
+              containerStyle={{width:'70%', marginVertical:10}}
+              inputContainerStyle={{borderBottomWidth:3, borderBottomColor:'white'}}
+              inputStyle={{color:"white"}}
+              labelStyle={{color:"white"}}
+              placeholder="Zona"
+              placeholderTextColor={'white'}
+              leftIcon={
+                <Icon
+                  name='globe'
+                  size={24}
+                  color='white'
+                />
+              }
+            />
             <Button
-             onPress={() => this.props.navigation.navigate('Revista')}
+              buttonStyle={{backgroundColor:"transparent", borderColor:"white" }}
+              onPress={() => this.props.navigation.navigate('Revista')}
               icon={
                 <Icon
                   name="arrow-right"
@@ -30,7 +39,7 @@ class HomeScreen extends React.Component {
                   color="white"
                 />
               }
-              title="Button with icon component"
+              title="Continuar"
             />
           </View>
         </View>
@@ -38,4 +47,21 @@ class HomeScreen extends React.Component {
     );
   }
 }
+
+const styles=StyleSheet.create({
+  imageBackground:{
+    width: '100%', 
+    height: '100%'
+  },
+  container:{
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'space-around',
+    alignItems: 'stretch',
+  },
+  
+})
+
+
 export default HomeScreen  
+

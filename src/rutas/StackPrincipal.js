@@ -17,7 +17,7 @@ const StackPrincipal = createStackNavigator({
     },
     {
         headerMode:'none',
-        mode:'card',
+        mode:'modal',
         initialRouteName: 'Home',
     });
 
