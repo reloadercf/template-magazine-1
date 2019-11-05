@@ -1,6 +1,6 @@
 export const black = '#000000'
 export const darkestGray = '#29292c'
-export const darkGray = '#3d3e44'
+export const darkGray = '#ffffff'
 export const darkPurple = '#282b36'
 export const mediumGray = '#9b9aa1'
 export const lightGray = '#DBDBDB'

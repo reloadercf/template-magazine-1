@@ -1,15 +1,19 @@
-//import liraries
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, SafeAreaView,TouchableOpacity } from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import styled from 'styled-components/native'
+import {Colors} from '../styles/index'
 
 
-// create a component
+const StyledView = styled.View`
+    flex:1;
+`
+
 class HeaderDefault extends Component {
     render() {
         return (
-            <View  style={styles.container}>
-                <SafeAreaView forceInset={{ top: 'always' }} style={{flex:1}} >
+            <StyledView >
+                <SafeAreaView forceInset={{ top: 'always' }} style={{flex:1, backgroundColor:Colors.black}} >
                     <TouchableOpacity
                         style={{alignItems:"flex-end", margin:16}}
                         onPress={() => {
@@ -18,26 +22,23 @@ class HeaderDefault extends Component {
                               this.props.navigation.closeDrawer();
                             }, 2000);
                           }}
-                    >
+                     >
                         <FontAwesome5 name="bars" size={24} color="#161924" />
 
                     </TouchableOpacity>
-                    <View>
-                        <Text>{this.props.name} Screen</Text>
-                    </View>
                 </SafeAreaView>
-            </View>
+                <View style={styles.container}>
+                    <Text>{this.props.name} Screen</Text>
+                </View>
+
+            </StyledView>
         ); 
     }
 }
 
-// define your styles
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: "#FFFFFF",
     },
 });
-
-//make this component available to the app
 export default HeaderDefault;

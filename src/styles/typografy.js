@@ -1,6 +1,5 @@
 import * as Colors from './colors'
 import * as Spacing from './spacing'
-
 export const extraLargeFontSize = 32
 export const largeFontSize = 24
 export const buttonFontSize = 18
@@ -14,8 +13,28 @@ const base = {
   alignItems: 'center',
   display: 'flex',
   flexDirection: 'row',
+}
+const baseColumn = {
+  alignItems: 'center',
+  display: 'flex',
+  flexDirection: 'column',
+}
+
+export const contentRowCenter = {
+  ...base,
   justifyContent: 'center',
 }
+
+const contentCenterColumn = {
+  ...baseColumn,
+  justifyContent: 'center',
+}
+
+const contentBetween = {
+  ...base,
+  justifyContent: 'center',
+}
+
 
 export const link = {
   color: Colors.thoughtbotRed,
@@ -24,9 +43,12 @@ export const link = {
 
 export const bodyText = {
   color: Colors.baseText,
-  fontSize: smallFontSize,
-  lineHeight: 19,
+  fontSize: baseFontSize,
+  textAlign:"center",
+  lineHeight: 20,
+  padding: Spacing.large,
 }
+
 
 export const headerText = {
   color: Colors.darkText,
@@ -34,17 +56,19 @@ export const headerText = {
   fontWeight: 'bold',
 }
 
+
 export const descriptionText = {
   color: Colors.baseText,
   fontSize: smallFontSize,
 }
 
 export const screenHeader = {
-  ...base,
+  ...contentBetween,
   color: Colors.baseText,
   fontSize: largeFontSize,
   fontWeight: 'bold',
 }
+
 
 export const screenFooter = {
   ...base,
@@ -54,6 +78,10 @@ export const screenFooter = {
 export const sectionHeader = {
   ...base,
   ...headerText,
+}
+
+export const section={
+  ...contentCenterColumn,
 }
 
 export const count = {

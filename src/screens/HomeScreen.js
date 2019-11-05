@@ -1,20 +1,27 @@
 import React from 'react';
-import { StyleSheet, View, Text, ImageBackground } from 'react-native';
+import { StyleSheet, View, Text, ImageBackground, Picker } from 'react-native';
 import fondoZona from '../assets/fondoZona.png'
 import { Button, Input } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import {Colors,Typography, Spacing, Buttons} from '../styles/index'
 
 class HomeScreen extends React.Component {
+  constructor(props){
+    super(props)
+    this.state={
+      language:null
+    }
+  }
   render() {
     console.log(this.props)
     return (
       <ImageBackground source={fondoZona} style={styles.imageBackground}>
         <View style={styles.container}>
           <View >
-            <Text style={{ color: 'white' }}>Selecciona la zona donde quieres encontrar las oportunidades</Text>
+            <Text style={Typography.bodyText}>Selecciona la zona donde quieres encontrar las oportunidades</Text>
           </View>
-          <View>
-            <Input
+          <View style={styles.section}>
+            {/* <Input
               containerStyle={{width:'70%', marginVertical:10}}
               inputContainerStyle={{borderBottomWidth:3, borderBottomColor:'white'}}
               inputStyle={{color:"white"}}
@@ -28,9 +35,30 @@ class HomeScreen extends React.Component {
                   color='white'
                 />
               }
-            />
+            /> */}
+            <View style={Typography.contentRowCenter}>
+               <Icon
+                  name='globe'
+                  size={24}
+                  color='white'
+                />
+                  <Picker
+                selectedValue={this.state.language}
+                style={{ width: "50%", backgroundColor: "transparent", color: Colors.white, }}
+                itemStyle={{ borderBottomColor: Colors.white, backgroundColor: "transparent", borderBottomWidth: 10 }}
+                onValueChange={(itemValue, itemIndex) =>
+                  this.setState({ language: itemValue })
+                }
+                mode={"dropdown"}>
+                <Picker.Item label="Mexico" value="Mexico" />
+                <Picker.Item label="España" value="España" />
+              </Picker>
+              
+            </View>
+          
+          
             <Button
-              buttonStyle={{backgroundColor:"transparent", borderColor:"white" }}
+              buttonStyle={Buttons.base}
               onPress={() => this.props.navigation.navigate('Revista')}
               icon={
                 <Icon
@@ -59,6 +87,10 @@ const styles=StyleSheet.create({
     justifyContent: 'space-around',
     alignItems: 'stretch',
   },
+  section:{
+     ...Typography.section
+  }
+
   
 })
 

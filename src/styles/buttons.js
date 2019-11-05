@@ -1,11 +1,12 @@
 import * as Colors from './colors'
 import * as Spacing from './spacing'
-import * as Typography from './typography'
+import * as Typography from './typografy'
 
 export const base = {
   alignItems: 'center',
   marginRight: Spacing.smallest,
   marginVertical: Spacing.tiny,
+  backgroundColor:"transparent",
 }
 
 export const text = {
@@ -14,6 +15,7 @@ export const text = {
   fontWeight: 'bold',
   letterSpacing: 1,
 }
+
 
 export const textUnselected = {
   ...text,
@@ -32,7 +34,7 @@ export const large = {
 }
 
 export const rounded = {
-  borderRadius: 50,
+  borderRadius: 30,
 }
 
 export const selected = {
