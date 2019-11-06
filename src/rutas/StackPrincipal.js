@@ -1,13 +1,15 @@
 import React from 'react';
 import { View, Text } from 'react-native';
-import { createAppContainer } from 'react-navigation';
+import { createAppContainer,createSwitchNavigator } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import HomeScreen from '../screens/HomeScreen';
 import DrawerRevista from './DrawerRevista';
+import ZonaLoading from '../screens/ZonaLoading';
 
 
 
-const StackPrincipal = createStackNavigator({
+const StackPrincipal = createSwitchNavigator({
+    ZonaLoading:ZonaLoading,
     Home: {
         screen: HomeScreen,
     },
@@ -18,7 +20,7 @@ const StackPrincipal = createStackNavigator({
     {
         headerMode:'none',
         mode:'modal',
-        initialRouteName: 'Home',
+        initialRouteName: 'ZonaLoading',
     });
 
 export default createAppContainer(StackPrincipal);

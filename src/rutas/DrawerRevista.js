@@ -1,29 +1,35 @@
 import React from 'react'
-import { createAppContainer } from 'react-navigation';
 import {createDrawerNavigator} from 'react-navigation-drawer'
+import { createStackNavigator } from 'react-navigation-stack';
 import HeaderDefault from '../components/HeaderDefault'
 import SideBar from '../components/SideBar';
+import Detail from '../screens/Detail'
+
+const categorias=[ {key:"1", nombre:'futbol'} ]
+
+const Categoria =({navigation})=> <HeaderDefault navigation={navigation} />
+
+const StackCategoria = createStackNavigator({
+    Categoria: {
+        screen: Categoria,
+    },
+    Detail: {
+        screen: Detail
+    }
+    },
+    {
+        headerMode:'none',
+        mode:'modal',
+        initialRouteName: 'Categoria',
+    });
 
 
-const Screen1 =({navigation})=> <HeaderDefault navigation={navigation} name="Screen 1"/>
 
-const Screen2 =({navigation})=> <HeaderDefault navigation={navigation} name="Screen 2"/>
-
-const Screen3 =({navigation})=> <HeaderDefault navigation={navigation} name="Screen 3"/>
-
-const Screen4 =({navigation})=> <HeaderDefault navigation={navigation} name="Screen 4"/>
-
-
-
-const DrawerRevista = createDrawerNavigator({
-  Screen1,
-  Screen2,
-  Screen3,
-  Screen4
-}, 
+const DrawerRevista = createDrawerNavigator(
+  {StackCategoria},
 {
   contentComponent:props => <SideBar {...props}/>
 }
 );
 
-export default createAppContainer(DrawerRevista);
+export default DrawerRevista;

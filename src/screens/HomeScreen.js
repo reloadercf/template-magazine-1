@@ -1,9 +1,10 @@
 import React from 'react';
-import { StyleSheet, View, Text, ImageBackground, Picker } from 'react-native';
+import { StyleSheet, View, Text, ImageBackground, Picker,AsyncStorage } from 'react-native';
 import fondoZona from '../assets/fondoZona.png'
 import { Button, Input } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {Colors,Typography, Spacing, Buttons} from '../styles/index'
+import { thisExpression } from '@babel/types';
 
 class HomeScreen extends React.Component {
   constructor(props){
@@ -12,6 +13,14 @@ class HomeScreen extends React.Component {
       language:null
     }
   }
+
+  _signInAsync = async (itemValue) => {
+    await AsyncStorage.setItem('zona', itemValue);
+    this.props.navigation.navigate('Revista');
+  };
+
+
+
   render() {
     console.log(this.props)
     return (
@@ -21,6 +30,7 @@ class HomeScreen extends React.Component {
             <Text style={Typography.bodyText}>Selecciona la zona donde quieres encontrar las oportunidades</Text>
           </View>
           <View style={styles.section}>
+            
             {/* <Input
               containerStyle={{width:'70%', marginVertical:10}}
               inputContainerStyle={{borderBottomWidth:3, borderBottomColor:'white'}}
@@ -39,16 +49,16 @@ class HomeScreen extends React.Component {
             <View style={Typography.contentRowCenter}>
                <Icon
                   name='globe'
-                  size={24}
+                  size={Typography.iconsize}
                   color='white'
                 />
                   <Picker
                 selectedValue={this.state.language}
                 style={{ width: "50%", backgroundColor: "transparent", color: Colors.white, }}
                 itemStyle={{ borderBottomColor: Colors.white, backgroundColor: "transparent", borderBottomWidth: 10 }}
-                onValueChange={(itemValue, itemIndex) =>
+                onValueChange={(itemValue, itemIndex) =>{
                   this.setState({ language: itemValue })
-                }
+                }}
                 mode={"dropdown"}>
                 <Picker.Item label="Mexico" value="Mexico" />
                 <Picker.Item label="España" value="España" />
@@ -59,12 +69,16 @@ class HomeScreen extends React.Component {
           
             <Button
               buttonStyle={Buttons.base}
-              onPress={() => this.props.navigation.navigate('Revista')}
+              onPress={() => {
+                this._signInAsync(this.state.language)
+              }}
+              //type="outline"
               icon={
                 <Icon
                   name="arrow-right"
-                  size={15}
+                  size={Typography.iconsize}
                   color="white"
+                  style={{marginRight:Spacing.small}}
                 />
               }
               title="Continuar"

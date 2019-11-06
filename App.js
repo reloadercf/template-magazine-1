@@ -7,7 +7,6 @@ import StackPrincipal from './src/rutas/StackPrincipal';
 
 
 const App=()=>{
-  
   useEffect(()=>{
     SplashScreen.hide()
   },[])
