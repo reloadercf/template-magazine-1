@@ -4,13 +4,18 @@ import fondoZona from '../assets/fondoZona.png'
 import { Button, Input } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {Colors,Typography, Spacing, Buttons} from '../styles/index'
-import { thisExpression } from '@babel/types';
+import PickerBox from 'react-native-picker-box';
+
 
 class HomeScreen extends React.Component {
   constructor(props){
     super(props)
     this.state={
-      language:null
+      data: [
+        {label: 'MEXICO', value: 'mexico'},
+        {label: 'ESPAÑA', value: 'españa'},
+      ],
+      selectedValue: ''
     }
   }
 
@@ -30,47 +35,28 @@ class HomeScreen extends React.Component {
             <Text style={Typography.bodyText}>Selecciona la zona donde quieres encontrar las oportunidades</Text>
           </View>
           <View style={styles.section}>
-            
-            {/* <Input
-              containerStyle={{width:'70%', marginVertical:10}}
-              inputContainerStyle={{borderBottomWidth:3, borderBottomColor:'white'}}
-              inputStyle={{color:"white"}}
-              labelStyle={{color:"white"}}
-              placeholder="Zona"
-              placeholderTextColor={'white'}
-              leftIcon={
-                <Icon
-                  name='globe'
-                  size={24}
-                  color='white'
-                />
-              }
-            /> */}
             <View style={Typography.contentRowCenter}>
-               <Icon
-                  name='globe'
-                  size={Typography.iconsize}
-                  color='white'
-                />
-                  <Picker
-                selectedValue={this.state.language}
-                style={{ width: "50%", backgroundColor: "transparent", color: Colors.white, }}
-                itemStyle={{ borderBottomColor: Colors.white, backgroundColor: "transparent", borderBottomWidth: 10 }}
-                onValueChange={(itemValue, itemIndex) =>{
-                  this.setState({ language: itemValue })
-                }}
-                mode={"dropdown"}>
-                <Picker.Item label="Mexico" value="Mexico" />
-                <Picker.Item label="España" value="España" />
-              </Picker>
-              
+              <Icon
+                name='globe'
+                size={Typography.iconsize}
+                color='white'
+              />
+             <Text style={Typography.bodyText} onPress={() => this.myref.openPicker()}>{this.state.selectedValue==''? "Zona": this.state.selectedValue}</Text>
+
             </View>
-          
-          
+            <PickerBox
+              ref={ref => this.myref = ref}
+              data={this.state.data}
+              itemTextColor={"#000"}
+              separatorColor={"#000"}
+              onValueChange={value => this.setState({ selectedValue: value })}
+              selectedValue={this.state.selectedValue}
+            />
+            
             <Button
               buttonStyle={Buttons.base}
               onPress={() => {
-                this._signInAsync(this.state.language)
+                this._signInAsync(this.state.selectedValue)
               }}
               //type="outline"
               icon={
@@ -83,6 +69,7 @@ class HomeScreen extends React.Component {
               }
               title="Continuar"
             />
+             
           </View>
         </View>
       </ImageBackground>
