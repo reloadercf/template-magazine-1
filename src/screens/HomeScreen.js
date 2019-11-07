@@ -15,7 +15,7 @@ class HomeScreen extends React.Component {
         {label: 'MEXICO', value: 'mexico'},
         {label: 'ESPAÑA', value: 'españa'},
       ],
-      selectedValue: ''
+      selectedValue: null
     }
   }
 
@@ -41,7 +41,7 @@ class HomeScreen extends React.Component {
                 size={Typography.iconsize}
                 color='white'
               />
-             <Text style={Typography.bodyText} onPress={() => this.myref.openPicker()}>{this.state.selectedValue==''? "Zona": this.state.selectedValue}</Text>
+             <Text style={Typography.bodyText} onPress={() => this.myref.openPicker()}>{this.state.selectedValue==null? "Zona": this.state.selectedValue}</Text>
 
             </View>
             <PickerBox

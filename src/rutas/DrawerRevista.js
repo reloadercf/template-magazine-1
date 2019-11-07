@@ -5,8 +5,7 @@ import HeaderDefault from '../components/HeaderDefault'
 import SideBar from '../components/SideBar';
 import Detail from '../screens/Detail'
 
-const categorias=[ {key:"1", nombre:'futbol'} ]
-
+const categorias=[ {key:"1", nombre:'FUTBOL'} ]
 const Categoria =({navigation})=> <HeaderDefault navigation={navigation} />
 
 const StackCategoria = createStackNavigator({
@@ -24,9 +23,10 @@ const StackCategoria = createStackNavigator({
     });
 
 
-
 const DrawerRevista = createDrawerNavigator(
-  {StackCategoria},
+{
+  StackCategoria
+},
 {
   contentComponent:props => <SideBar {...props}/>
 }

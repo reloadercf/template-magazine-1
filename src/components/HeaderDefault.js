@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, SafeAreaView,TouchableOpacity,AsyncStorage } from 'react-native';
+import { View, Text, StyleSheet, SafeAreaView,TouchableOpacity,AsyncStorage, ActivityIndicator } from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import styled from 'styled-components/native'
 import {Colors} from '../styles/index'
@@ -11,13 +11,41 @@ const StyledView = styled.View`
 `
 class HeaderDefault extends Component {
 
+     constructor(props) {
+        super(props);  
+        this.state = { isLoading: false };
+      }  
+
+
+      componentDidMount() {
+        //this.fetchAll(this.props.navigation.getParam('id', 0));
+      }
+    
+      componentDidUpdate(prevProps) {
+        const newID = this.props.navigation.getParam('idCategoria', 0);
+        const prevID = prevProps.navigation.getParam('idCategoria', -1);
+        if (newID !== prevID) {
+          console.log('ID has changed');
+          //this.fetchAll(newID);
+        }
+      }
+
     _signOutAsync = async () => {
         await AsyncStorage.clear();
         this.props.navigation.navigate('Home');
       };
 
-
     render() {
+        console.log(this.props.navigation.getParam('idCategoria',0))
+    
+       if (this.state.isLoading) {
+        return (
+          <View style={{ flex: 1, padding: 40 }}>
+            <ActivityIndicator />
+          </View>
+        );
+      }
+
         return (
             <StyledView >
                 <SafeAreaView forceInset={{ top: 'always' }} style={{flex:1, backgroundColor:Colors.black}} >
