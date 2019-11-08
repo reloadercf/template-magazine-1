@@ -24,6 +24,11 @@ export default class SideBar extends Component {
           <ScrollView style={styles.container}>
               <ImageBackground source={mexico} style={{ width: undefined, height: Dimensions.get("window").height, padding: 10, paddingTop: 48 }}>
                   <View style={styles.container}>
+                      <Text
+                          style={{ fontSize: 20, lineHeight: 20, textAlign: 'left', marginLeft: 20, marginBottom: 30, fontWeight: 'bold' }}
+                          onPress={this.navigateToScreen('Principal')}>
+                          Novedad
+                      </Text>
                       {categorias.map(x => (
                           <Text
                               key={x.id}
