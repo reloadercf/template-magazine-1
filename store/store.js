@@ -1,7 +1,7 @@
 import {createStore} from 'redux'
 import reducer from './reducers'
 
-let initialState=[]
+//let initialState=[]
 
 
 

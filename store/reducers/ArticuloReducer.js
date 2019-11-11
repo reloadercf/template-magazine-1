@@ -11,6 +11,8 @@ export default function(state=initialState,action){
                 ...state,
                 articulos:[...state.articulos,action.portada]
             }
+        case CONSTANTES.OBTENER_ARTICULOS_PORTADA_FALSE:
+                return {...state, articulosPortadaFalse: action.articulosPortadaFalse }
         default:
             return state
     }
