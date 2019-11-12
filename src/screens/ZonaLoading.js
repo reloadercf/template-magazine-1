@@ -31,4 +31,4 @@ class ZonaLoading extends React.Component {
     );
   }
 }
-export default ZonaLoading
+export default ZonaLoading;

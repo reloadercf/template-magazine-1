@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import {View,StyleSheet, ScrollView, ImageBackground, Image, Dimensions,FlatList, Text,TouchableWithoutFeedback} from 'react-native'
-import { NavigationActions, DrawerItems} from 'react-navigation';
+import {View,StyleSheet, ScrollView, ImageBackground, Dimensions, Text} from 'react-native'
+import { NavigationActions} from 'react-navigation';
 import mexico from '../assets/mexico.png'
 
 
