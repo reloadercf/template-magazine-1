@@ -2,7 +2,8 @@ import CONSTANTES from '../constantes'
 
 let initialState={
     articulos:[],
-    articulosPortadaFalse:[]
+    articulosPortadaFalse:[],
+    zonas:[]
 }
 
 export default function(state=initialState,action){
@@ -16,6 +17,12 @@ export default function(state=initialState,action){
                 return {
                     ...state,
                      articulosPortadaFalse: [...state.articulosPortadaFalse,action.articulosPortadaFalse] }
+        
+
+        case CONSTANTES.OBTENER_ZONAS:
+                return {
+                        ...state,
+                        zonas: [...state.zonas,action.zonas] }
         default:
             return state
     }
