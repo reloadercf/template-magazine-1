@@ -13,6 +13,8 @@ import styled from 'styled-components/native';
 import {Colors} from '../styles/index';
 import {Button} from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import {connect} from 'react-redux'
+import {actionGetArticulosPortadaFalse} from '../../store/actions/ArticuloActions'
 
 const StyledView = styled.View`
   flex: 1;
@@ -36,10 +38,37 @@ class HomePrincipal extends Component {
     }
   }
 
-  _signOutAsync = async () => {
-    await AsyncStorage.clear();
-    this.props.navigation.navigate('Home');
-  };
+      componentDidMount() {
+        this.props.getArticulos();
+        console.log('component did mount ejecutandose')
+      }
+    
+
+      componentDidUpdate(prevProps) {
+        const newID = this.props.navigation.getParam('idCategoria', 0);
+        const prevID = prevProps.navigation.getParam('idCategoria', -1);
+        if (newID !== prevID) {
+          console.log('ID has changed');
+          //this.fetchAll(newID);
+        }
+      }
+
+    _signOutAsync = async () => {
+        await AsyncStorage.clear();
+        this.props.navigation.navigate('Home');
+      };
+
+    render() {
+        console.log(this.props.navigation.getParam('idCategoria',0))
+        console.log(this.props)
+    
+       if (this.state.isLoading) {
+        return (
+          <View style={{ flex: 1, padding: 40 }}>
+            <ActivityIndicator />
+          </View>
+        );
+      }
 
   render() {
     console.log(this.props.navigation.getParam('idCategoria', 0));
@@ -96,4 +125,18 @@ const styles = StyleSheet.create({
     flex: 10,
   },
 });
-export default HomePrincipal;
+
+const mapStateToProps = (state) => {
+  return {
+      articulosPortadaFalse: state.articulos.articulosPortadaFalse,
+  }
+}
+const mapDispatchToProps = (dispatch) => {
+  return {
+      getArticulos: () => {
+          dispatch(actionGetArticulosPortadaFalse());  
+    },
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(HomePrincipal)
