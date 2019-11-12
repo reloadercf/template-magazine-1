@@ -13,12 +13,13 @@ import styled from 'styled-components/native';
 import {Colors} from '../styles/index';
 import {Button} from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import {connect} from 'react-redux'
-import {actionGetArticulosPortadaFalse} from '../../store/actions/ArticuloActions'
+import {connect} from 'react-redux';
+import {actionGetArticulosPortadaFalse} from '../../store/actions/ArticuloActions';
 
 const StyledView = styled.View`
   flex: 1;
 `;
+
 class HomePrincipal extends Component {
   constructor(props) {
     super(props);
@@ -26,7 +27,8 @@ class HomePrincipal extends Component {
   }
 
   componentDidMount() {
-    //this.fetchAll(this.props.navigation.getParam('id', 0));
+    this.props.getArticulos();
+    console.log('component did mount ejecutandose');
   }
 
   componentDidUpdate(prevProps) {
@@ -38,41 +40,14 @@ class HomePrincipal extends Component {
     }
   }
 
-      componentDidMount() {
-        this.props.getArticulos();
-        console.log('component did mount ejecutandose')
-      }
-    
-
-      componentDidUpdate(prevProps) {
-        const newID = this.props.navigation.getParam('idCategoria', 0);
-        const prevID = prevProps.navigation.getParam('idCategoria', -1);
-        if (newID !== prevID) {
-          console.log('ID has changed');
-          //this.fetchAll(newID);
-        }
-      }
-
-    _signOutAsync = async () => {
-        await AsyncStorage.clear();
-        this.props.navigation.navigate('Home');
-      };
-
-    render() {
-        console.log(this.props.navigation.getParam('idCategoria',0))
-        console.log(this.props)
-    
-       if (this.state.isLoading) {
-        return (
-          <View style={{ flex: 1, padding: 40 }}>
-            <ActivityIndicator />
-          </View>
-        );
-      }
+  _signOutAsync = async () => {
+    await AsyncStorage.clear();
+    this.props.navigation.navigate('Home');
+  };
 
   render() {
     console.log(this.props.navigation.getParam('idCategoria', 0));
-
+    console.log(this.props.articulosPortadaFalse);
     if (this.state.isLoading) {
       return (
         <View style={{flex: 1, padding: 40}}>
@@ -98,7 +73,7 @@ class HomePrincipal extends Component {
           </TouchableOpacity>
         </SafeAreaView>
         <View style={styles.container}>
-          <Text>HOME </Text>
+          <Text>HOME</Text>
           <Button
             icon={<Icon name="arrow-right" size={15} color="white" />}
             onPress={() =>
@@ -120,23 +95,26 @@ class HomePrincipal extends Component {
   }
 }
 
+const mapStateToProps = state => {
+  return {
+    articulosPortadaFalse: state.articulos.articulosPortadaFalse,
+  };
+};
+const mapDispatchToProps = dispatch => {
+  return {
+    getArticulos: () => {
+      dispatch(actionGetArticulosPortadaFalse());
+    },
+  };
+};
+
 const styles = StyleSheet.create({
   container: {
     flex: 10,
   },
 });
 
-const mapStateToProps = (state) => {
-  return {
-      articulosPortadaFalse: state.articulos.articulosPortadaFalse,
-  }
-}
-const mapDispatchToProps = (dispatch) => {
-  return {
-      getArticulos: () => {
-          dispatch(actionGetArticulosPortadaFalse());  
-    },
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(HomePrincipal)
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(HomePrincipal);
