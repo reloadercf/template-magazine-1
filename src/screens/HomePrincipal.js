@@ -15,10 +15,10 @@ import {Button} from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {connect} from 'react-redux';
 import {actionGetArticulosPortadaFalse} from '../../store/actions/ArticuloActions';
+import Carrousel from '../components/Carrousel';
+import { ScrollView } from 'react-native-gesture-handler';
 
-const StyledView = styled.View`
-  flex: 1;
-`;
+
 
 class HomePrincipal extends Component {
   constructor(props) {
@@ -57,12 +57,12 @@ class HomePrincipal extends Component {
     }
 
     return (
-      <StyledView>
-        <SafeAreaView
-          forceInset={{top: 'always'}}
-          style={{flex: 1, backgroundColor: Colors.black}}>
+      <View style={{display:"flex", flex:1}}>
+         <SafeAreaView
+          forceInset={{ top: 'always' }}
+          style={{ backgroundColor: Colors.black }}>
           <TouchableOpacity
-            style={{alignItems: 'flex-end', margin: 16}}
+            style={{ alignItems: 'flex-end', margin: 16 }}
             onPress={() => {
               this.props.navigation.openDrawer();
               setTimeout(() => {
@@ -71,26 +71,50 @@ class HomePrincipal extends Component {
             }}>
             <FontAwesome5 name="bars" size={24} color="#fff" />
           </TouchableOpacity>
-        </SafeAreaView>
-        <View style={styles.container}>
-          <Text>HOME</Text>
-          <Button
-            icon={<Icon name="arrow-right" size={15} color="white" />}
-            onPress={() =>
-              this.props.navigation.navigate('Detail', {
-                itemId: 86,
-                otherParam: 'anything you want here',
-              })
-            }
-            title="navigate"
-          />
-          <Button
-            icon={<Icon name="arrow-right" size={15} color="white" />}
-            onPress={() => this._signOutAsync()}
-            title="clear zona"
-          />
-        </View>
-      </StyledView>
+        </SafeAreaView>     
+      
+        <ScrollView style={styles.articulos}>
+          <Carrousel articulos={this.props.articulosPortadaFalse} />
+              <Text>ASDASD</Text>
+              <Text>ASDASD</Text>
+              <Text>ASDASD</Text>
+              <Text>ASDASD</Text>
+              <Text>ASDASD</Text>
+              <Text>ASDASD</Text>
+              <Text>ASDASD</Text>
+              <Text>ASDASD</Text>
+              <Text>ASDASD</Text>
+              <Text>ASDASD</Text>
+              <Text>ASDASD</Text>
+              <Text>ASDASD</Text>
+              <Text>ASDASD</Text>
+              <Text>ASDASD</Text>
+              <Text>ASDASD</Text>
+              <Text>ASDASD</Text>
+              <Text>ASDASD</Text>
+              <Text>ASDASD</Text>
+              <Text>ASDASD</Text>
+              <Text>ASDASD</Text>
+              <Text>ASDASD</Text>
+              <Text>ASDASD</Text>
+              <Text>ASDASD</Text>
+              <Text>ASDASD</Text>
+              <Text>ASDASD</Text>
+              <Text>ASDASD</Text>
+              <Text>ASDASD</Text>
+              <Text>ASDASD</Text>
+              <Text>ASDASD</Text>
+              <Text>ASDASD</Text>
+              <Text>ASDASD</Text>
+              <Text>ASDASD</Text>
+              <Text>ASDASD</Text>
+              <Text>ASDASD</Text>
+              <Text>ASDASD</Text>
+              <Text>ASDASD</Text>
+              <Text>ASDASD</Text>
+              <Text>ASDASD</Text>
+        </ScrollView>
+      </View>
     );
   }
 }
@@ -107,14 +131,35 @@ const mapDispatchToProps = dispatch => {
     },
   };
 };
-
 const styles = StyleSheet.create({
-  container: {
-    flex: 10,
-  },
+  articulos:{
+    flex:1
+  }
 });
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
 )(HomePrincipal);
+
+
+
+
+
+
+   {/*
+          <Button
+            icon={<Icon name="arrow-right" size={15} color="white" />}
+            onPress={() =>
+              this.props.navigation.navigate('Detail', {
+                itemId: 86,
+                otherParam: 'anything you want here',
+              })
+            }
+            title="navigate"
+          />
+          <Button
+            icon={<Icon name="arrow-right" size={15} color="white" />}
+            onPress={() => this._signOutAsync()}
+            title="clear zona"
+          /> */}

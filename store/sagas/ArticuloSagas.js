@@ -16,6 +16,8 @@ function* generadoraArticulosPortadaFalse() {
     console.log('error al obtener Articulos en portada');
   }
 }
+
+
 export default function* SagasArticulos() {
   yield takeEvery(
     CONSTANTES.GET_ARTICULOS_PORTADA_FALSE,

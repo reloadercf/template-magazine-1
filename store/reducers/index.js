@@ -1,6 +1,6 @@
-import {combineReducers} from 'redux'
-import ArticuloReducer from './ArticuloReducer'
+import {combineReducers} from 'redux';
+import ArticuloReducer from './ArticuloReducer';
 
 export default combineReducers({
-    articulos:ArticuloReducer,
-})
+  articulos: ArticuloReducer,
+});
