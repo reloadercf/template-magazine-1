@@ -12,8 +12,16 @@ import {Button, Input} from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {Colors, Typography, Spacing, Buttons} from '../styles/index';
 import PickerBox from 'react-native-picker-box';
+import {connect} from 'react-redux';
+import {actionGetZonas} from '../../store/actions/ArticuloActions';
 
 class HomeScreen extends React.Component {
+
+  componentDidMount() {
+    this.props.getZonas();
+    console.log('component did mount ejecutandose');
+  }
+
   constructor(props) {
     super(props);
     this.state = {
@@ -99,4 +107,23 @@ const styles = StyleSheet.create({
   },
 });
 
-export default HomeScreen;
+const mapStateToProps = state => {
+  return {
+    zonas: state.articulos.zonas,
+  };
+};
+const mapDispatchToProps = dispatch => {
+  return {
+    getZonas: () => {
+      dispatch(actionGetZonas());
+    },
+  };
+};
+
+
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(HomeScreen);
+
