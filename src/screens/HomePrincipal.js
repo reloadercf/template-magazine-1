@@ -12,11 +12,12 @@ import {
   Image
 } from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
-import {Colors} from '../styles/index';
 import {connect} from 'react-redux';
 import {actionGetArticulosPortadaFalse} from '../../store/actions/ArticuloActions';
 import CardArticulo from '../components/CardArticulo';
 import Carrousel from '../components/Carrousel';
+import ScrollArticulosCateria from '../components/ScrollArticulosCategoria';
+import { Colors,Typography } from '../styles';
 
 const articles=[
   {
@@ -81,6 +82,29 @@ const articles=[
   }
 ]
 
+const categorias=[
+  {
+    id:1,
+    categoria:"Autos"
+  },
+  {
+    id:1,
+    categoria:"Deportes"
+  },
+  {
+    id:1,
+    categoria:"Vida"
+  },
+  {
+    id:1,
+    categoria:"Lugares"
+  },
+  {
+    id:1,
+    categoria:"Personas"
+  },
+]
+
 class HomePrincipal extends Component {
   constructor(props) {
     super(props);
@@ -127,10 +151,10 @@ class HomePrincipal extends Component {
       );
     }
     return (
-      <View style={{ flex:1}}>
+      <View style={{backgroundColor:"#0E0E0E"}}>
          <SafeAreaView
           forceInset={{ top: 'always' }}
-          style={{ backgroundColor: Colors.black }}>
+          >
           <TouchableOpacity
             style={{ alignItems: 'flex-end', margin: 16 }}
             onPress={() => {
@@ -142,20 +166,23 @@ class HomePrincipal extends Component {
             <FontAwesome5 name="bars" size={24} color="#fff" />
           </TouchableOpacity>
         </SafeAreaView> 
-        <ScrollView >
-          <View style={{height:300}}>
-             <Carrousel/>
+        <ScrollView  style={styles.scrollview}>
+          <View style={{ height: 300 }}>
+            <Carrousel />
           </View>
-        
-         <Text>asdasd</Text>
-         <FlatList
-          data={articles}
-          renderItem={({ item }) => (
-            <CardArticulo articulo={item}/>
-          )}
-          keyExtractor={item => item.id}
-        />
+          {categorias && categorias.length > 0 ?
+            categorias.map((categoria) => (
+              <View style={{ height: 300 }}>
+                <Text style={styles.text}>{categoria.categoria}</Text>
+                <ScrollArticulosCateria categoria={categoria} />
+              </View>
+            ))
+            : null
+          }
+      
         </ScrollView>
+      
+  
       </View>
     );
   }
@@ -176,16 +203,18 @@ const mapDispatchToProps = dispatch => {
 
 
 const styles = StyleSheet.create({
-
+  text:{
+    ...Typography.headerText
+  },
+  scrollview:{
+   marginBottom:"10%"
+  }
 });
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
 )(HomePrincipal);
-
-
-
 
 
 
