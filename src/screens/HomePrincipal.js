@@ -15,8 +15,8 @@ import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import {Colors} from '../styles/index';
 import {connect} from 'react-redux';
 import {actionGetArticulosPortadaFalse} from '../../store/actions/ArticuloActions';
-import Carrousel from '../components/Carrousel';
 import CardArticulo from '../components/CardArticulo';
+import Carrousel from '../components/Carrousel';
 
 const articles=[
   {
@@ -144,7 +144,7 @@ class HomePrincipal extends Component {
         </SafeAreaView> 
         <ScrollView >
           <View style={{height:300}}>
-              <Carrousel articulos={this.props.articulosPortadaFalse} />  
+             <Carrousel/>
           </View>
         
          <Text>asdasd</Text>
