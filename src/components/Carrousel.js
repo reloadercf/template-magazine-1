@@ -69,7 +69,7 @@ const Carrousel = props => {
         onMomentumScrollEnd={setSelectedIndex} 
         ref={scrollRef}
         > 
-        {props.articulos.map((articulo, key) => (
+        {articles.map((articulo, key) => (
           <View key={key} style={styles.carrousel}> 
             <Image source={{ uri: articulo.imagen }} style={{
               width: DEVICE_WIDTH, height: "100%", resizeMode: 'contain'
@@ -93,6 +93,7 @@ const styles = StyleSheet.create({
    carrousel:{
      width:DEVICE_WIDTH,
      position:"relative", 
+
    },
    titulo:{
      position:"absolute",
@@ -102,10 +103,10 @@ const styles = StyleSheet.create({
      ...Typography.headerText
 
    },
-   container:{
-   height:"40%",
-   width:"100%"
-   },
+  container: {
+    height: "100%",
+    width: "100%",
+  },
    
    circleDiv:{
      width:"100%",

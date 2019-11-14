@@ -7,18 +7,79 @@ import {
   TouchableOpacity,
   AsyncStorage,
   ActivityIndicator,
+  ScrollView,
+  FlatList,
+  Image
 } from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
-import styled from 'styled-components/native';
 import {Colors} from '../styles/index';
-import {Button} from 'react-native-elements';
-import Icon from 'react-native-vector-icons/FontAwesome';
 import {connect} from 'react-redux';
 import {actionGetArticulosPortadaFalse} from '../../store/actions/ArticuloActions';
 import Carrousel from '../components/Carrousel';
-import { ScrollView } from 'react-native-gesture-handler';
+import CardArticulo from '../components/CardArticulo';
 
-
+const articles=[
+  {
+    id:1,
+    titulo:"Descubre como la indecision destruye el logro de los deseos de hombre",
+    imagen:"https://images.pexels.com/photos/373912/pexels-photo-373912.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
+  },
+  {
+    id:2,
+    titulo:"Descubre como la indecision destruye el logro de los deseos de hombre",
+    imagen:"https://images.pexels.com/photos/373912/pexels-photo-373912.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
+  },
+  {
+    id:3,
+    titulo:"Descubre como la indecision destruye el logro de los deseos de hombre",
+    imagen:"https://images.pexels.com/photos/373912/pexels-photo-373912.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
+  },
+  {
+    id:4,
+    titulo:"Descubre como la indecision destruye el logro de los deseos de hombre",
+    imagen:"https://images.pexels.com/photos/373912/pexels-photo-373912.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
+  },
+  {
+    id:2,
+    titulo:"Descubre como la indecision destruye el logro de los deseos de hombre",
+    imagen:"https://images.pexels.com/photos/373912/pexels-photo-373912.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
+  },
+  {
+    id:1,
+    titulo:"Descubre como la indecision destruye el logro de los deseos de hombre",
+    imagen:"https://images.pexels.com/photos/373912/pexels-photo-373912.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
+  },
+  {
+    id:2,
+    titulo:"Descubre como la indecision destruye el logro de los deseos de hombre",
+    imagen:"https://images.pexels.com/photos/373912/pexels-photo-373912.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
+  },
+  {
+    id:3,
+    titulo:"Descubre como la indecision destruye el logro de los deseos de hombre",
+    imagen:"https://images.pexels.com/photos/373912/pexels-photo-373912.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
+  },
+  {
+    id:4,
+    titulo:"Descubre como la indecision destruye el logro de los deseos de hombre",
+    imagen:"https://images.pexels.com/photos/373912/pexels-photo-373912.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
+  },
+  {
+    id:2,
+    titulo:"Descubre como la indecision destruye el logro de los deseos de hombre",
+    imagen:"https://images.pexels.com/photos/373912/pexels-photo-373912.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
+  },
+  {
+    id:4,
+    titulo:"Descubre como la indecision destruye el logro de los deseos de hombre",
+    imagen:"https://images.pexels.com/photos/373912/pexels-photo-373912.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
+  },
+  {
+    id:2,
+    titulo:"Descubre como la indecision destruye el logro de los deseos de hombre",
+    imagen:"https://images.pexels.com/photos/373912/pexels-photo-373912.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
+  }
+]
 
 class HomePrincipal extends Component {
   constructor(props) {
@@ -35,7 +96,6 @@ class HomePrincipal extends Component {
     const newID = this.props.navigation.getParam('idCategoria', 0);
     const prevID = prevProps.navigation.getParam('idCategoria', -1);
     if (newID !== prevID) {
-      console.log('ID has changed');
       //this.fetchAll(newID);
     }
   }
@@ -56,8 +116,18 @@ class HomePrincipal extends Component {
       );
     }
 
+    function Item({ title,imagen }) {
+      return (
+        <View style={{flex:1}} >
+          <Image source={{ uri: imagen }} style={{
+              width:"100%", height: 400
+            }} /> 
+          <Text style={styles.title}>{title}</Text>
+        </View>
+      );
+    }
     return (
-      <View style={{display:"flex", flex:1}}>
+      <View style={{ flex:1}}>
          <SafeAreaView
           forceInset={{ top: 'always' }}
           style={{ backgroundColor: Colors.black }}>
@@ -67,52 +137,24 @@ class HomePrincipal extends Component {
               this.props.navigation.openDrawer();
               setTimeout(() => {
                 this.props.navigation.closeDrawer();
-              }, 2000);
+              }, 2000)
             }}>
             <FontAwesome5 name="bars" size={24} color="#fff" />
           </TouchableOpacity>
-        </SafeAreaView>     
-      
-        <ScrollView style={styles.articulos}>
-          <Carrousel articulos={this.props.articulosPortadaFalse} />
-              <Text>ASDASD</Text>
-              <Text>ASDASD</Text>
-              <Text>ASDASD</Text>
-              <Text>ASDASD</Text>
-              <Text>ASDASD</Text>
-              <Text>ASDASD</Text>
-              <Text>ASDASD</Text>
-              <Text>ASDASD</Text>
-              <Text>ASDASD</Text>
-              <Text>ASDASD</Text>
-              <Text>ASDASD</Text>
-              <Text>ASDASD</Text>
-              <Text>ASDASD</Text>
-              <Text>ASDASD</Text>
-              <Text>ASDASD</Text>
-              <Text>ASDASD</Text>
-              <Text>ASDASD</Text>
-              <Text>ASDASD</Text>
-              <Text>ASDASD</Text>
-              <Text>ASDASD</Text>
-              <Text>ASDASD</Text>
-              <Text>ASDASD</Text>
-              <Text>ASDASD</Text>
-              <Text>ASDASD</Text>
-              <Text>ASDASD</Text>
-              <Text>ASDASD</Text>
-              <Text>ASDASD</Text>
-              <Text>ASDASD</Text>
-              <Text>ASDASD</Text>
-              <Text>ASDASD</Text>
-              <Text>ASDASD</Text>
-              <Text>ASDASD</Text>
-              <Text>ASDASD</Text>
-              <Text>ASDASD</Text>
-              <Text>ASDASD</Text>
-              <Text>ASDASD</Text>
-              <Text>ASDASD</Text>
-              <Text>ASDASD</Text>
+        </SafeAreaView> 
+        <ScrollView >
+          <View style={{height:300}}>
+              <Carrousel articulos={this.props.articulosPortadaFalse} />  
+          </View>
+        
+         <Text>asdasd</Text>
+         <FlatList
+          data={articles}
+          renderItem={({ item }) => (
+            <CardArticulo articulo={item}/>
+          )}
+          keyExtractor={item => item.id}
+        />
         </ScrollView>
       </View>
     );
@@ -131,10 +173,10 @@ const mapDispatchToProps = dispatch => {
     },
   };
 };
+
+
 const styles = StyleSheet.create({
-  articulos:{
-    flex:1
-  }
+
 });
 
 export default connect(
