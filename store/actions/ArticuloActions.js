@@ -5,7 +5,6 @@ export const actionGetArticulosPortadaFalse = () => ({
     
 }
 )
-console.log('llamando acciones')
 export const obtenerArticulosPortadaFalse = articulosPortadaFalse => ({
     type: CONSTANTES.OBTENER_ARTICULOS_PORTADA_FALSE,
     articulosPortadaFalse

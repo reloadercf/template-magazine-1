@@ -146,13 +146,21 @@ class HomePrincipal extends Component {
           <View style={{height:300}}>
              <Carrousel/>
           </View>
+<<<<<<< HEAD
+=======
+        
+>>>>>>> a0856025a0f867a0154b854a74fd572ecd824cc3
          <Text>asdasd</Text>
          <FlatList
           data={articles}
           renderItem={({ item }) => (
             <CardArticulo articulo={item}/>
           )}
+<<<<<<< HEAD
            keyExtractor={item => item.id}
+=======
+          keyExtractor={item => item.id}
+>>>>>>> a0856025a0f867a0154b854a74fd572ecd824cc3
         />
         </ScrollView>
       </View>
