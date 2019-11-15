@@ -29,9 +29,6 @@ const articles=[
   ]
   const DEVICE_WIDTH = Dimensions.get('window').width;
   
-  
-  
-  
 
 export default class Carrousel extends Component {
   scrollRef=React.createRef();

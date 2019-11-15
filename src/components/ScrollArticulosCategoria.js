@@ -90,19 +90,15 @@ const ScrollArticulosCateria = (props) => {
                         :
                         null
                 }
-
             </ViewPager>
-     
         </View>
         
     );
 };
-
 const styles = StyleSheet.create({
     viewPager: {
       width:"100%",
       marginBottom:50
-   
     },
     pager:{
         flex:1,
@@ -114,8 +110,6 @@ const styles = StyleSheet.create({
         position:"relative",
         justifyContent:"center",
         alignItems:"center",
-        
-
     },
     text:{
         backgroundColor:Colors.black,
