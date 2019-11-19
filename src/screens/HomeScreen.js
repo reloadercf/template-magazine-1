@@ -7,22 +7,24 @@ import {
   Picker,
   AsyncStorage,
 } from 'react-native';
+import {connect} from 'react-redux'
 import fondoZona from '../assets/fondoZona.png';
 import {Button, Input} from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {Colors, Typography, Spacing, Buttons} from '../styles/index';
 import PickerBox from 'react-native-picker-box';
+import { actionGetConfig } from '../../store/actions/ConfigActions';
 
 class HomeScreen extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: [
-        {label: 'MEXICO', value: 'mexico'},
-        {label: 'ESPAÑA', value: 'españa'},
-      ],
       selectedValue: null,
     };
+  }
+
+  componentDidMount(){
+     this.props.getConfigInicial(1)
   }
 
   _signInAsync = async itemValue => {
@@ -31,7 +33,6 @@ class HomeScreen extends React.Component {
   };
 
   render() {
-    console.log(this.props);
     return (
       <ImageBackground source={fondoZona} style={styles.imageBackground}>
         <View style={styles.container}>
@@ -53,7 +54,7 @@ class HomeScreen extends React.Component {
             </View>
             <PickerBox
               ref={ref => (this.myref = ref)}
-              data={this.state.data}
+              data={this.props.regiones}
               itemTextColor={'#000'}
               separatorColor={'#000'}
               onValueChange={value => this.setState({selectedValue: value})}
@@ -83,6 +84,7 @@ class HomeScreen extends React.Component {
   }
 }
 
+
 const styles = StyleSheet.create({
   imageBackground: {
     width: '100%',
@@ -99,4 +101,21 @@ const styles = StyleSheet.create({
   },
 });
 
-export default HomeScreen;
+
+const mapStateToProps = (state) => {
+  return {
+    regiones: state.ReducerConfig.regiones
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getConfigInicial: (idRevista) => {
+      dispatch(actionGetConfig(idRevista))
+  }
+}
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(HomeScreen)
+
+// export default HomeScreen

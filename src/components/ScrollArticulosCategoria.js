@@ -20,51 +20,7 @@ const articles=[
       titulo:"Descubre como la indecision destruye el logro de los deseos de hombre",
       imagen:"https://images.pexels.com/photos/373912/pexels-photo-373912.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
     },
-    {
-      id:4,
-      titulo:"Descubre como la indecision destruye el logro de los deseos de hombre",
-      imagen:"https://images.pexels.com/photos/373912/pexels-photo-373912.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
-    },
-    {
-      id:2,
-      titulo:"Descubre como la indecision destruye el logro de los deseos de hombre",
-      imagen:"https://images.pexels.com/photos/373912/pexels-photo-373912.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
-    },
-    {
-      id:1,
-      titulo:"Descubre como la indecision destruye el logro de los deseos de hombre",
-      imagen:"https://images.pexels.com/photos/373912/pexels-photo-373912.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
-    },
-    {
-      id:2,
-      titulo:"Descubre como la indecision destruye el logro de los deseos de hombre",
-      imagen:"https://images.pexels.com/photos/373912/pexels-photo-373912.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
-    },
-    {
-      id:3,
-      titulo:"Descubre como la indecision destruye el logro de los deseos de hombre",
-      imagen:"https://images.pexels.com/photos/373912/pexels-photo-373912.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
-    },
-    {
-      id:4,
-      titulo:"Descubre como la indecision destruye el logro de los deseos de hombre",
-      imagen:"https://images.pexels.com/photos/373912/pexels-photo-373912.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
-    },
-    {
-      id:2,
-      titulo:"Descubre como la indecision destruye el logro de los deseos de hombre",
-      imagen:"https://images.pexels.com/photos/373912/pexels-photo-373912.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
-    },
-    {
-      id:4,
-      titulo:"Descubre como la indecision destruye el logro de los deseos de hombre",
-      imagen:"https://images.pexels.com/photos/373912/pexels-photo-373912.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
-    },
-    {
-      id:2,
-      titulo:"Descubre como la indecision destruye el logro de los deseos de hombre",
-      imagen:"https://images.pexels.com/photos/373912/pexels-photo-373912.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
-    }
+  
   ]
 
   const DEVICE_WIDTH = Dimensions.get('window').width;
@@ -76,7 +32,7 @@ const ScrollArticulosCateria = (props) => {
                 {
                     articles && articles.length > 0 ?
                         articles.map(articulo => (
-                            <View style={styles.pagerItem}>
+                            <View key={articulo.id} style={styles.pagerItem}>
                                 <Image source={{ uri: articulo.imagen }} style={{
                                     width: DEVICE_WIDTH, height: "100%", resizeMode: 'contain'
                                 }} />

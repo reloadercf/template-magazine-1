@@ -41,42 +41,42 @@ const articles=[
     imagen:"https://images.pexels.com/photos/373912/pexels-photo-373912.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
   },
   {
-    id:2,
+    id:5,
     titulo:"Descubre como la indecision destruye el logro de los deseos de hombre",
     imagen:"https://images.pexels.com/photos/373912/pexels-photo-373912.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
   },
   {
-    id:1,
+    id:6,
     titulo:"Descubre como la indecision destruye el logro de los deseos de hombre",
     imagen:"https://images.pexels.com/photos/373912/pexels-photo-373912.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
   },
   {
-    id:2,
+    id:7,
     titulo:"Descubre como la indecision destruye el logro de los deseos de hombre",
     imagen:"https://images.pexels.com/photos/373912/pexels-photo-373912.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
   },
   {
-    id:3,
+    id:8,
     titulo:"Descubre como la indecision destruye el logro de los deseos de hombre",
     imagen:"https://images.pexels.com/photos/373912/pexels-photo-373912.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
   },
   {
-    id:4,
+    id:9,
     titulo:"Descubre como la indecision destruye el logro de los deseos de hombre",
     imagen:"https://images.pexels.com/photos/373912/pexels-photo-373912.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
   },
   {
-    id:2,
+    id:10,
     titulo:"Descubre como la indecision destruye el logro de los deseos de hombre",
     imagen:"https://images.pexels.com/photos/373912/pexels-photo-373912.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
   },
   {
-    id:4,
+    id:11,
     titulo:"Descubre como la indecision destruye el logro de los deseos de hombre",
     imagen:"https://images.pexels.com/photos/373912/pexels-photo-373912.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
   },
   {
-    id:2,
+    id:12,
     titulo:"Descubre como la indecision destruye el logro de los deseos de hombre",
     imagen:"https://images.pexels.com/photos/373912/pexels-photo-373912.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
   }
@@ -88,19 +88,19 @@ const categorias=[
     categoria:"Autos"
   },
   {
-    id:1,
+    id:2,
     categoria:"Deportes"
   },
   {
-    id:1,
+    id:3,
     categoria:"Vida"
   },
   {
-    id:1,
+    id:4,
     categoria:"Lugares"
   },
   {
-    id:1,
+    id:5,
     categoria:"Personas"
   },
 ]
@@ -172,7 +172,7 @@ class HomePrincipal extends Component {
           </View>
           {categorias && categorias.length > 0 ?
             categorias.map((categoria) => (
-              <View style={{ height: 300 }}>
+              <View key={categoria.id} style={{ height: 300 }}>
                 <Text style={styles.text}>{categoria.categoria}</Text>
                 <ScrollArticulosCateria categoria={categoria} />
               </View>
