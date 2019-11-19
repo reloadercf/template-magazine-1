@@ -19,6 +19,8 @@ import Carrousel from '../components/Carrousel';
 import ScrollArticulosCateria from '../components/ScrollArticulosCategoria';
 import { Colors,Typography } from '../styles';
 
+
+
 const articles=[
   {
     id:1,
@@ -82,28 +84,7 @@ const articles=[
   }
 ]
 
-const categorias=[
-  {
-    id:1,
-    categoria:"Autos"
-  },
-  {
-    id:2,
-    categoria:"Deportes"
-  },
-  {
-    id:3,
-    categoria:"Vida"
-  },
-  {
-    id:4,
-    categoria:"Lugares"
-  },
-  {
-    id:5,
-    categoria:"Personas"
-  },
-]
+
 
 class HomePrincipal extends Component {
   constructor(props) {
@@ -113,7 +94,6 @@ class HomePrincipal extends Component {
 
   componentDidMount() {
     this.props.getArticulos();
-    console.log('component did mount ejecutandose');
   }
 
   componentDidUpdate(prevProps) {
@@ -130,8 +110,10 @@ class HomePrincipal extends Component {
   };
 
   render() {
-    console.log(this.props.navigation.getParam('idCategoria', 0));
-    console.log(this.props.articulosPortadaFalse);
+    const{categorias, articulosPortadaFalse}=this.props
+    console.log(articulosPortadaFalse)
+    //console.log(this.props.navigation.getParam('idCategoria', 0));
+
     if (this.state.isLoading) {
       return (
         <View style={{flex: 1, padding: 40}}>
@@ -168,12 +150,12 @@ class HomePrincipal extends Component {
         </SafeAreaView> 
         <ScrollView  style={styles.scrollview}>
           <View style={{ height: 300 }}>
-            <Carrousel />
+            <Carrousel articulos={articulosPortadaFalse} />
           </View>
           {categorias && categorias.length > 0 ?
             categorias.map((categoria) => (
               <View key={categoria.id} style={{ height: 300 }}>
-                <Text style={styles.text}>{categoria.categoria}</Text>
+                <Text style={styles.text}>{categoria.nombre_categoria}</Text>
                 <ScrollArticulosCateria categoria={categoria} />
               </View>
             ))
@@ -191,6 +173,7 @@ class HomePrincipal extends Component {
 const mapStateToProps = state => {
   return {
     articulosPortadaFalse: state.articulos.articulosPortadaFalse,
+    categorias: state.ReducerConfig.categoriasRevista
   };
 };
 const mapDispatchToProps = dispatch => {
@@ -204,7 +187,11 @@ const mapDispatchToProps = dispatch => {
 
 const styles = StyleSheet.create({
   text:{
-    ...Typography.headerText
+    ...Typography.headerText,
+    marginBottom:10,
+    marginLeft:20,
+    textTransform:"uppercase",
+    
   },
   scrollview:{
    marginBottom:"10%"
@@ -216,21 +203,3 @@ export default connect(
   mapDispatchToProps,
 )(HomePrincipal);
 
-
-
-   {/*
-          <Button
-            icon={<Icon name="arrow-right" size={15} color="white" />}
-            onPress={() =>
-              this.props.navigation.navigate('Detail', {
-                itemId: 86,
-                otherParam: 'anything you want here',
-              })
-            }
-            title="navigate"
-          />
-          <Button
-            icon={<Icon name="arrow-right" size={15} color="white" />}
-            onPress={() => this._signOutAsync()}
-            title="clear zona"
-          /> */}

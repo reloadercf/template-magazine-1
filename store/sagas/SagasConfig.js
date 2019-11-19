@@ -2,11 +2,11 @@ import {takeEvery, call, put, all} from 'redux-saga/effects';
 import CONSTANTES from '../constantes';
 import { actionPutConfig } from '../actions/ConfigActions';
 
-let RegionesRevista = () =>fetch(`${CONSTANTES.revista}/publicos/Lista-Paises/`, {
+let RegionesRevista = () =>fetch(`${CONSTANTES.revista}/publicos/Lista-paises/`, {
     method: 'GET',
   }).then(response => response.json());
 
-  let CategoriasRevista = (idRevista) =>fetch(`${CONSTANTES.revista}/publicos/Lista-Categorias/?idrevista=${idRevista}`, 
+  let CategoriasRevista = (idRevista) =>fetch(`${CONSTANTES.revista}/revistas/Lista-de-categorias/?idrevista=${idRevista}`, 
   {
     method: 'GET',
   }).then(response => response.json());
@@ -14,18 +14,22 @@ let RegionesRevista = () =>fetch(`${CONSTANTES.revista}/publicos/Lista-Paises/`,
 
 function* generadoraGetConfiguracion(values) {
   try {
-    // let [regiones, categoriasRevista]= yield all([
-    //     call(RegionesRevista),
-    //     call(CategoriasRevista, values.idRevista)
-    //   ])
-    let regiones=yield call(RegionesRevista)
-      console.log(regiones)
-    // yield put(actionPutConfig({
-    //     regiones,
-    //     categoriasRevista
-    // }));
-    console.log('se llamaron las configuraciones')
+    let [regiones, categoriasRevista]= yield all([
+        call(RegionesRevista),
+        call(CategoriasRevista, values.idRevista)
+      ])
 
+      let pikerValues= regiones.map(region=>{
+        let regionPicker={}
+        regionPicker.label=region.nombre_pais
+        regionPicker.value=region.id
+        return regionPicker
+      })
+
+    yield put(actionPutConfig({
+        pikerValues,
+        categoriasRevista
+    }));
 
   } catch (error) {
     console.log('error al traer los datos');

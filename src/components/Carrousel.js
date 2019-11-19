@@ -9,24 +9,6 @@ import {
 } from 'react-native';
 import { Colors,Typography } from '../styles';
 
-
-const articles=[
-    {
-      id:1,
-      titulo:"Descubre como la indecision destruye el logro de los deseos de hombre",
-      imagen:"https://images.pexels.com/photos/373912/pexels-photo-373912.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
-    },
-    {
-      id:2,
-      titulo:"hola munod",
-      imagen:"https://images.pexels.com/photos/374870/pexels-photo-374870.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
-    },
-    {
-      id:3,
-      titulo:"hola munod",
-      imagen:"https://images.pexels.com/photos/325185/pexels-photo-325185.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
-    }
-  ]
   const DEVICE_WIDTH = Dimensions.get('window').width;
   
 
@@ -43,7 +25,7 @@ export default class Carrousel extends Component {
           this.setState(
             prev=>({
                 selectedIndex:
-                    prev.selectedIndex===articles.length-1
+                    prev.selectedIndex===this.props.articulos.length-1
                     ?0
                     :prev.selectedIndex+1
             }),
@@ -69,7 +51,7 @@ export default class Carrousel extends Component {
 
   render() {
       const{selectedIndex}=this.state
-
+      const{articulos}=this.props
     return (
         <View style={styles.container}>
             <ScrollView
@@ -78,7 +60,7 @@ export default class Carrousel extends Component {
                 onMomentumScrollEnd={this.setSelectedIndex}
                 ref={this.scrollRef}
             >
-                {articles.map((articulo, key) => (
+                {articulos.map((articulo, key) => (
                     <View key={key} style={styles.carrousel}>
                         <Image source={{ uri: articulo.imagen }} style={{
                             width: DEVICE_WIDTH, height: "100%", resizeMode: 'contain'
@@ -90,7 +72,7 @@ export default class Carrousel extends Component {
             </ScrollView>
             <View style={styles.circleDiv}>
                 {
-                    articles.map((article, i) => <View key={article.id} style={[styles.whiteCircle, { opacity: i === selectedIndex ? 0.5 : 1 }]} />)
+                    articulos.map((article, i) => <View key={i} style={[styles.whiteCircle, { opacity: i === selectedIndex ? 0.5 : 1 }]} />)
                 }
             </View>
         </View>

@@ -33,7 +33,10 @@ class HomeScreen extends React.Component {
   };
 
   render() {
+    const {regiones}=this.props
+    console.log(regiones)
     return (
+      
       <ImageBackground source={fondoZona} style={styles.imageBackground}>
         <View style={styles.container}>
           <View>
@@ -52,14 +55,21 @@ class HomeScreen extends React.Component {
                   : this.state.selectedValue}
               </Text>
             </View>
-            <PickerBox
-              ref={ref => (this.myref = ref)}
-              data={this.props.regiones}
-              itemTextColor={'#000'}
-              separatorColor={'#000'}
-              onValueChange={value => this.setState({selectedValue: value})}
-              selectedValue={this.state.selectedValue}
-            />
+
+            {regiones ?
+              <PickerBox
+                ref={ref => (this.myref = ref)}
+                data={regiones}
+                prevTextLabel="Cancelar"
+                prevTextColor="#000"
+                itemTextColor={'#000'}
+                separatorColor={'#000'}
+                onValueChange={value => this.setState({ selectedValue: value })}
+                selectedValue={this.state.selectedValue}
+              /> : null
+
+            }
+            
 
             <Button
               buttonStyle={Buttons.base}

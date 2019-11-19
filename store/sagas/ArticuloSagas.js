@@ -3,7 +3,7 @@ import {obtenerArticulosPortadaFalse} from '../actions/ArticuloActions';
 import CONSTANTES from '../constantes';
 
 let ArticulosPortadaFalse = () =>
-  fetch(`${CONSTANTES.revista}/articulos/Lista-de-especiales/?portada=False`, {
+  fetch(`${CONSTANTES.revista}/articulos/Lista-de-especiales/`, {
     method: 'GET',
   }).then(response => response.json());
 

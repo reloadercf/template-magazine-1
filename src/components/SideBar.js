@@ -1,13 +1,19 @@
 import React, { Component } from 'react';
 import {View,StyleSheet, ScrollView, ImageBackground, Dimensions, Text} from 'react-native'
 import { NavigationActions} from 'react-navigation';
+import {connect} from 'react-redux'
 import mexico from '../assets/mexico.png'
+import { actionGetConfig } from '../../store/actions/ConfigActions';
 
 
-const categorias=[ {id:"1", nombre:'futbol'} ,{id:"2", nombre:'Musica'},{id:"3", nombre:'Medicina'}]
-export default class SideBar extends Component {
+
+class SideBar extends Component {
     constructor(props){
         super(props)
+    }
+
+    componentDidMount(){
+        this.props.getConfigInicial(1)
     }
 
     navigateToScreen(routeName, params) {
@@ -15,7 +21,8 @@ export default class SideBar extends Component {
     }
 
   render() {
-  
+      let {categorias}=this.props
+        console.log(categorias)
        if(categorias==null){
             return (<Text>....</Text>)
        }
@@ -35,7 +42,7 @@ export default class SideBar extends Component {
                               style={{ fontSize: 20, lineHeight: 20, textAlign: 'left', marginLeft: 20, marginBottom: 30, fontWeight: 'bold' }}
                               onPress={this.navigateToScreen('Categoria', { idCategoria: x.id })}
                           >
-                              {x.nombre}
+                              {x.nombre_categoria}
                           </Text>
                       ))}
                   </View>
@@ -51,3 +58,19 @@ const styles=StyleSheet.create({
         flex:1
     }
  })
+
+ const mapStateToProps = (state) => {
+     return {
+        categorias: state.ReducerConfig.categoriasRevista
+     }
+ }
+
+ const mapDispatchToProps = (dispatch) => {
+     return {
+        getConfigInicial: (idRevista) => {
+            dispatch(actionGetConfig(idRevista))
+        }
+     }
+ }
+
+ export default connect(mapStateToProps, mapDispatchToProps)(SideBar)
