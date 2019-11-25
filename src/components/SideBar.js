@@ -6,40 +6,32 @@ import mexico from '../assets/mexico.png'
 import { actionGetConfig } from '../../store/actions/ConfigActions';
 
 
-
 class SideBar extends Component {
-    constructor(props){
-        super(props)
-    }
-
-    componentDidMount(){
-        this.props.getConfigInicial(1)
-    }
 
     navigateToScreen(routeName, params) {
         return () => { this.props.navigation.dispatch(NavigationActions.navigate({ routeName, params })) };
     }
 
+
+
   render() {
       let {categorias}=this.props
-        console.log(categorias)
        if(categorias==null){
             return (<Text>....</Text>)
        }
-
       return (
           <ScrollView style={styles.container}>
               <ImageBackground source={mexico} style={{ width: undefined, height: Dimensions.get("window").height, padding: 10, paddingTop: 48 }}>
                   <View style={styles.container}>
                       <Text
-                          style={{ fontSize: 20, lineHeight: 20, textAlign: 'left', marginLeft: 20, marginBottom: 30, fontWeight: 'bold' }}
+                          style={styles.menuItem}
                           onPress={this.navigateToScreen('Principal')}>
                           Novedad
                       </Text>
                       {categorias.map(x => (
                           <Text
                               key={x.id}
-                              style={{ fontSize: 20, lineHeight: 20, textAlign: 'left', marginLeft: 20, marginBottom: 30, fontWeight: 'bold' }}
+                              style={styles.menuItem}
                               onPress={this.navigateToScreen('Categoria', { idCategoria: x.id })}
                           >
                               {x.nombre_categoria}
@@ -56,6 +48,16 @@ class SideBar extends Component {
 const styles=StyleSheet.create({
     container:{
         flex:1
+    },
+    menuItem:{
+        fontSize: 18, 
+        lineHeight: 20, 
+        textAlign: 'left', 
+        marginLeft: 20, 
+        marginBottom: 30, 
+        fontWeight: '400',
+        letterSpacing:2,
+        color:"#fff",
     }
  })
 
@@ -74,3 +76,7 @@ const styles=StyleSheet.create({
  }
 
  export default connect(mapStateToProps, mapDispatchToProps)(SideBar)
+
+
+
+

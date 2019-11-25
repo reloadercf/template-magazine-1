@@ -66,6 +66,7 @@ class HomeScreen extends React.Component {
                 separatorColor={'#000'}
                 onValueChange={value => this.setState({ selectedValue: value })}
                 selectedValue={this.state.selectedValue}
+                
               /> : null
 
             }

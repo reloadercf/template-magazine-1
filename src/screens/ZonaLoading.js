@@ -7,7 +7,9 @@ import {
   View,
 } from 'react-native';
 
+
 class ZonaLoading extends React.Component {
+
   componentDidMount() {
     this._bootstrapAsync();
   }

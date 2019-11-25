@@ -18,71 +18,7 @@ import CardArticulo from '../components/CardArticulo';
 import Carrousel from '../components/Carrousel';
 import ScrollArticulosCateria from '../components/ScrollArticulosCategoria';
 import { Colors,Typography } from '../styles';
-
-
-
-const articles=[
-  {
-    id:1,
-    titulo:"Descubre como la indecision destruye el logro de los deseos de hombre",
-    imagen:"https://images.pexels.com/photos/373912/pexels-photo-373912.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
-  },
-  {
-    id:2,
-    titulo:"Descubre como la indecision destruye el logro de los deseos de hombre",
-    imagen:"https://images.pexels.com/photos/373912/pexels-photo-373912.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
-  },
-  {
-    id:3,
-    titulo:"Descubre como la indecision destruye el logro de los deseos de hombre",
-    imagen:"https://images.pexels.com/photos/373912/pexels-photo-373912.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
-  },
-  {
-    id:4,
-    titulo:"Descubre como la indecision destruye el logro de los deseos de hombre",
-    imagen:"https://images.pexels.com/photos/373912/pexels-photo-373912.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
-  },
-  {
-    id:5,
-    titulo:"Descubre como la indecision destruye el logro de los deseos de hombre",
-    imagen:"https://images.pexels.com/photos/373912/pexels-photo-373912.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
-  },
-  {
-    id:6,
-    titulo:"Descubre como la indecision destruye el logro de los deseos de hombre",
-    imagen:"https://images.pexels.com/photos/373912/pexels-photo-373912.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
-  },
-  {
-    id:7,
-    titulo:"Descubre como la indecision destruye el logro de los deseos de hombre",
-    imagen:"https://images.pexels.com/photos/373912/pexels-photo-373912.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
-  },
-  {
-    id:8,
-    titulo:"Descubre como la indecision destruye el logro de los deseos de hombre",
-    imagen:"https://images.pexels.com/photos/373912/pexels-photo-373912.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
-  },
-  {
-    id:9,
-    titulo:"Descubre como la indecision destruye el logro de los deseos de hombre",
-    imagen:"https://images.pexels.com/photos/373912/pexels-photo-373912.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
-  },
-  {
-    id:10,
-    titulo:"Descubre como la indecision destruye el logro de los deseos de hombre",
-    imagen:"https://images.pexels.com/photos/373912/pexels-photo-373912.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
-  },
-  {
-    id:11,
-    titulo:"Descubre como la indecision destruye el logro de los deseos de hombre",
-    imagen:"https://images.pexels.com/photos/373912/pexels-photo-373912.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
-  },
-  {
-    id:12,
-    titulo:"Descubre como la indecision destruye el logro de los deseos de hombre",
-    imagen:"https://images.pexels.com/photos/373912/pexels-photo-373912.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
-  }
-]
+import { actionGetConfig } from '../../store/actions/ConfigActions';
 
 
 
@@ -93,7 +29,8 @@ class HomePrincipal extends Component {
   }
 
   componentDidMount() {
-    this.props.getArticulos();
+    this.props.getArticulos()
+    this.props.getConfigInicial(1)
   }
 
   componentDidUpdate(prevProps) {
@@ -181,6 +118,9 @@ const mapDispatchToProps = dispatch => {
     getArticulos: () => {
       dispatch(actionGetArticulosPortadaFalse());
     },
+    getConfigInicial: (idRevista) => {
+      dispatch(actionGetConfig(idRevista))
+    }
   };
 };
 

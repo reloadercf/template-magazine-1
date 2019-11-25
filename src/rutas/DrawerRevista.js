@@ -5,6 +5,7 @@ import HeaderDefault from '../components/HeaderDefault';
 import SideBar from '../components/SideBar';
 import Detail from '../screens/Detail';
 import HomePrincipal from '../screens/HomePrincipal';
+import Categoria from '../screens/Categoria';
 
 const StackPrincipal = createStackNavigator(
   {
@@ -19,7 +20,7 @@ const StackPrincipal = createStackNavigator(
   },
 );
 
-const Categoria = ({navigation}) => <HeaderDefault navigation={navigation} />;
+
 const StackCategoria = createStackNavigator(
   {
     Categoria: {
