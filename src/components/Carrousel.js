@@ -8,29 +8,9 @@ import {
   Text,
 } from 'react-native';
 import { Colors,Typography } from '../styles';
+import CardCarrousel from './CardCarrousel';
 
-
-const articles=[
-    {
-      id:1,
-      titulo:"Descubre como la indecision destruye el logro de los deseos de hombre",
-      imagen:"https://images.pexels.com/photos/373912/pexels-photo-373912.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
-    },
-    {
-      id:2,
-      titulo:"hola munod",
-      imagen:"https://images.pexels.com/photos/374870/pexels-photo-374870.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
-    },
-    {
-      id:3,
-      titulo:"hola munod",
-      imagen:"https://images.pexels.com/photos/325185/pexels-photo-325185.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
-    }
-  ]
   const DEVICE_WIDTH = Dimensions.get('window').width;
-  
-  
-  
   
 
 export default class Carrousel extends Component {
@@ -46,7 +26,7 @@ export default class Carrousel extends Component {
           this.setState(
             prev=>({
                 selectedIndex:
-                    prev.selectedIndex===articles.length-1
+                    prev.selectedIndex===this.props.articulos.length-1
                     ?0
                     :prev.selectedIndex+1
             }),
@@ -57,7 +37,7 @@ export default class Carrousel extends Component {
                     x:DEVICE_WIDTH*this.state.selectedIndex
                 }) 
             })
-      }, 3000);
+      }, 2500);
   }
 
 
@@ -72,7 +52,7 @@ export default class Carrousel extends Component {
 
   render() {
       const{selectedIndex}=this.state
-
+      const{articulos, navigation}=this.props
     return (
         <View style={styles.container}>
             <ScrollView
@@ -81,21 +61,20 @@ export default class Carrousel extends Component {
                 onMomentumScrollEnd={this.setSelectedIndex}
                 ref={this.scrollRef}
             >
-                {articles.map((articulo, key) => (
-                    <View key={key} style={styles.carrousel}>
-                        <Image source={{ uri: articulo.imagen }} style={{
-                            width: DEVICE_WIDTH, height: "100%", resizeMode: 'contain'
-                        }} />
-
-                        <Text style={styles.titulo}>{articulo.titulo}</Text>
-                    </View>
+                {articulos.map((articulo, key) => (
+                  <View key={key} style={styles.carrousel}>
+                    <CardCarrousel articulo={articulo} onClick={() =>
+                      navigation.navigate('Detail', {data: articulo})
+                  } />
+                  </View>
+ 
                 ))}
             </ScrollView>
-            <View style={styles.circleDiv}>
+            {/* <View style={styles.circleDiv}>
                 {
-                    articles.map((article, i) => <View key={article.id} style={[styles.whiteCircle, { opacity: i === selectedIndex ? 0.5 : 1 }]} />)
+                    articulos.map((article, i) => <View key={i} style={[styles.whiteCircle, { opacity: i === selectedIndex ? 0.5 : 1 }]} />)
                 }
-            </View>
+            </View> */}
         </View>
     );
   }
@@ -107,17 +86,13 @@ const styles = StyleSheet.create({
   
     carrousel:{
       width:DEVICE_WIDTH,
-      position:"relative", 
- 
+      position:"relative",
+      display:"flex",
+      flexDirection:"row",
+      justifyContent:"center",
+      alignItems:"center", 
     },
-    titulo:{
-      position:"absolute",
-      top:"65%",
-      backgroundColor:"#000",
-      padding:5,
-      ...Typography.headerText
- 
-    },
+   
    container: {
      height: "100%",
      width: "100%",
