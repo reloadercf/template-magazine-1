@@ -4,16 +4,13 @@ import { NavigationActions} from 'react-navigation';
 import {connect} from 'react-redux'
 import mexico from '../assets/mexico.png'
 import { actionGetConfig } from '../../store/actions/ConfigActions';
+import ProfilePicture from './ProfilePicture';
 
 
 class SideBar extends Component {
-
     navigateToScreen(routeName, params) {
         return () => { this.props.navigation.dispatch(NavigationActions.navigate({ routeName, params })) };
     }
-
-
-
   render() {
       let {categorias}=this.props
        if(categorias==null){
@@ -21,13 +18,22 @@ class SideBar extends Component {
        }
       return (
           <ScrollView style={styles.container}>
-              <ImageBackground source={mexico} style={{ width: undefined, height: Dimensions.get("window").height, padding: 10, paddingTop: 48 }}>
+              <ImageBackground source={mexico} style={{ width: undefined, height: Dimensions.get("window").height}}>
                   <View style={styles.container}>
+                      <View style={{marginBottom:20}}>
+                        <ProfilePicture/>
+                      </View>   
                       <Text
                           style={styles.menuItem}
                           onPress={this.navigateToScreen('Principal')}>
-                          Nuevo
+                          Inicio
                       </Text>
+                      <Text
+                          style={styles.menuItem}
+                          onPress={this.navigateToScreen('Principal')}>
+                          Buscar
+                      </Text>
+                      <Text style={[styles.menuItem, styles.textIntereses]}>Tus Intereses</Text>
                       {categorias.map(x => (
                           <Text
                               key={x.id}
@@ -58,6 +64,14 @@ const styles=StyleSheet.create({
         fontWeight: '400',
         letterSpacing:2,
         color:"#fff",
+    },
+    textIntereses:{
+        marginLeft: 0, 
+        paddingVertical:5,
+        backgroundColor:"#1E2227",
+        textAlign:"center",
+        
+        
     }
  })
 

@@ -3,23 +3,22 @@ import {
   View,
   Text,
   StyleSheet,
-  SafeAreaView,
-  TouchableOpacity,
   AsyncStorage,
-  ActivityIndicator,
   ScrollView,
-  FlatList,
-  Image
 } from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import {useDispatch,useSelector} from 'react-redux';
 import {actionGetArticulosPortadaFalse} from '../../store/actions/ArticuloActions';
 import CardArticulo from '../components/CardArticulo';
 import Carrousel from '../components/Carrousel';
-import ScrollArticulosCateria from '../components/ScrollArticulosCategoria';
+import ScrollArticulosCategoria from '../components/ScrollArticulosCategoria';
 import { Colors,Typography } from '../styles';
 import { actionGetConfig } from '../../store/actions/ConfigActions';
 import HeaderDefault from '../components/HeaderDefault';
+import Slider from '../components/Slider';
+import SliderCursos from '../components/SliderCursos';
+import TitulosSection from '../components/TitulosSection';
+import SubtituloSection from '../components/SubtituloSection';
 
 const HomePrincipal = (props) => {
   const categorias = useSelector(state => state.ReducerConfig.categoriasRevista);
@@ -38,35 +37,32 @@ const HomePrincipal = (props) => {
 
 
   return (
-    <View style={{backgroundColor:"#0E0E0E", flex:1}}>
-   
-      <ScrollView  style={styles.scrollview}>
-      <HeaderDefault navigation={props.navigation}/>
-        <View style={{ height: 300 }}>
-          <Carrousel articulos={articulosPortadaFalse}  navigation={props.navigation}/>
-          <ScrollView  horizontal={true}>
-            {
-                    articulosPortadaFalse && articulosPortadaFalse.length > 0 ?
-                    articulosPortadaFalse.map(articulo => (
-                            <CardArticulo articulo={articulo}/>
-                        ))
-                        :
-                        null
-                }
-            </ScrollView>
+    <View style={{ backgroundColor: "#0E0E0E", flex: 1 }}>
+
+      <ScrollView style={styles.scrollview}>
+        <HeaderDefault navigation={props.navigation} />
+        <TitulosSection texto="Bienvenido"/> 
+        <SubtituloSection texto="Qué quieres aprender hoy?"/>
+        <View style={{ height: 250 }}>
+          <Carrousel articulos={articulosPortadaFalse} navigation={props.navigation} />
         </View>
-        {categorias && categorias.length > 0 ?
-          categorias.map((categoria) => (
-            <View key={categoria.id} style={{ height: 300 }}>
-              <Text style={styles.text}>{categoria.nombre_categoria}</Text>
-              <ScrollArticulosCateria categoria={categoria} />
-            </View>
-          ))
-          : null
-        }
+        <View>
+          <SubtituloSection texto="Los mas visitados"/>
+          <Slider data={articulosPortadaFalse} navigation={props.navigation} />
+        </View>
+        <View>
+          <SubtituloSection texto="Cursos Nuevos"/>
+          <SliderCursos data={articulosPortadaFalse} navigation={props.navigation} />
+        </View>
+        <View>
+          <SubtituloSection texto="Recomedados para ti"/>
+          <Slider data={articulosPortadaFalse} navigation={props.navigation} />
+        </View>
+        
     
+
       </ScrollView>
-    
+
 
     </View>
   );

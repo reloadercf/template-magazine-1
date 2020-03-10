@@ -4,43 +4,29 @@ import {StyleSheet, View, Text, Image,Dimensions, ScrollView} from 'react-native
 import { Colors,Typography } from '../styles';
 import CONSTANTES from '../../store/constantes';
 import CardArticulo from './CardArticulo';
-
+import {useDispatch,useSelector} from 'react-redux';
 
 const DEVICE_WIDTH = Dimensions.get('window').width;
 
-const ScrollArticulosCateria = (props) => {
-    
-    const [articulos, setArticulosCategoria] = useState([]);
+const ScrollArticulosCategoria = (props) => {
+  
+    const categorias = useSelector(state => state.ReducerConfig.categoriasRevista);
+    const articulosPortadaFalse = useSelector(state => state.articulos.articulosPortadaFalse);
+    const dispatch = useDispatch();
 
-   
 
      useEffect(() => {
         fetchData()
       },[]);
 
-      async function fetchData() {
-        const res = await fetch(`${CONSTANTES.revista}/articulos/Lista-de-articulos/?idrevista=2&&idcategoria=${props.categoria.id}`);
-        res
-          .json()
-          .then(res => setArticulosCategoria(res))
-      }
-      console.log(articulos)
+    
     return (
         <View style={{flex:1, flexDirection:"row", justifyContent:"center"}}>
             <ScrollView  horizontal={true}>
             {
                     articulos && articulos.length > 0 ?
                       articulos.map(articulo => (
-                            // <View key={articulo.id} style={styles.pagerItem}>
-                            //     <Image source={{ uri: articulo.imagen }} style={{
-                            //         width: DEVICE_WIDTH, height: "100%", resizeMode: 'contain'
-                            //     }} />
-                            //     <View style={{position:"absolute", width:"80%", top:"70%"}}>
-                            //         <Text style={styles.text}>{articulo.titulo}</Text>
-                            //     </View>
-                            // </View>
                             <CardArticulo articulo={articulo}/>
-
                         ))
                         :
                         null
@@ -71,4 +57,4 @@ const styles = StyleSheet.create({
         ...Typography.headerText,
     }
   });
-export default  ScrollArticulosCateria
+export default  ScrollArticulosCategoria

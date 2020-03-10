@@ -2,7 +2,7 @@ import React from 'react';
 import { Text, View, StyleSheet, Image,Dimensions, TouchableOpacity } from 'react-native';
 import { Colors,Typography } from '../styles';
 
-const CardArticulo = ({articulo, onClick}) => (
+const CardCurso= ({articulo, onClick}) => (
     <TouchableOpacity style={styles.container} onPress={onClick}>
         <View style={styles.articulo}>
             <Image source={{ uri: articulo.imagen }} style={styles.image} />
@@ -36,4 +36,4 @@ const styles=StyleSheet.create({
     
 })
 
-export default CardArticulo;
+export default CardCurso;

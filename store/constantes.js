@@ -1,5 +1,5 @@
 const PARAMETROS = {
-  revista: 'http://192.168.1.67:8000',
+  revista: 'http://192.168.1.70:8000',
 };
 
 let ARTICLE = {
