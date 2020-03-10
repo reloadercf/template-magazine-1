@@ -19,12 +19,14 @@ function* generadoraGetConfiguracion(values) {
         call(CategoriasRevista, values.idRevista)
       ])
 
+      console.log(regiones)
       let pikerValues= regiones.map(region=>{
         let regionPicker={}
         regionPicker.label=region.nombre_pais
         regionPicker.value=region.id
         return regionPicker
       })
+      console.log(pikerValues)
 
     yield put(actionPutConfig({
         pikerValues,
@@ -32,7 +34,7 @@ function* generadoraGetConfiguracion(values) {
     }));
 
   } catch (error) {
-    console.log('error al traer los datos');
+    console.log(error);
   }
 }
 

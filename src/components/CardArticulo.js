@@ -21,7 +21,7 @@ const CardArticulo = ({articulo}) => (
 const styles=StyleSheet.create({
     articulo:{
         position:"relative",
-        width:DEVICE_WIDTH
+        width:"50%"
     },
     titulo:{
         position:"absolute",

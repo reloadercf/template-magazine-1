@@ -7,7 +7,7 @@ export const baseFontSize = 16
 export const smallFontSize = 14
 export const smallestFontSize = 10
 export const largeHeaderFontSize = 20
-export const headerFontSize = 18
+export const headerFontSize = 16
 export const iconsize=20
 
 const base = {

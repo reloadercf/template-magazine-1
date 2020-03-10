@@ -26,11 +26,19 @@ class ZonaLoading extends React.Component {
   // Render any loading content that you like here
   render() {
     return (
-      <View>
-        <ActivityIndicator />
+      <View style={styles.container}>
+        <ActivityIndicator size="large" color="#fff"  />
         <StatusBar barStyle="default" />
       </View>
     );
   }
 }
+
+const styles= StyleSheet.create({
+  container:{
+     flex:1,
+     justifyContent:"center",
+     alignItems:"center"
+  }
+})
 export default ZonaLoading;

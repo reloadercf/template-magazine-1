@@ -17,6 +17,8 @@ import {Colors, Typography} from '../styles/index';
 import {Button} from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { getArticulosCategoria } from '../../store/actions/ArticuloActions';
+import mxopportunity from '../assets/mxopportunity.png'
+import HeaderDefault from '../components/HeaderDefault';
 
 const articles=[
   {
@@ -110,9 +112,25 @@ class Categoria extends Component {
 
     return (
         <View style={{backgroundColor:"#0E0E0E"}}>
-         <SafeAreaView
+         
+        {/* <SafeAreaView
           forceInset={{ top: 'always' }}
-          >
+          style={{ display: "flex", flexDirection: "row", justifyContent: "space-between", alignItems: "center" }}
+        >
+          <TouchableOpacity
+            style={{ alignItems: 'flex-start', margin: 16 }}
+            onPress={() => {
+              this.props.navigation.openDrawer();
+              setTimeout(() => {
+                this.props.navigation.closeDrawer();
+              }, 2000)
+            }}>
+            <FontAwesome5 name="bars" size={24} color="#fff" />
+          </TouchableOpacity>
+          <Image source={mxopportunity} style={{
+            width: DEVICE_WIDTH / 2, height: "100%", resizeMode: 'contain', alignItems: "center"
+          }} />
+
           <TouchableOpacity
             style={{ alignItems: 'flex-end', margin: 16 }}
             onPress={() => {
@@ -123,7 +141,9 @@ class Categoria extends Component {
             }}>
             <FontAwesome5 name="bars" size={24} color="#fff" />
           </TouchableOpacity>
-        </SafeAreaView> 
+        </SafeAreaView>  */}
+        <HeaderDefault navigation={this.props.navigation}/>
+
         <ScrollView  contentContainerStyle={styles.scrollview} >
            <View style={{width:DEVICE_WIDTH}}>
                <Text>sasdad</Text>

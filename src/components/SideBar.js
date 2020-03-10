@@ -26,7 +26,7 @@ class SideBar extends Component {
                       <Text
                           style={styles.menuItem}
                           onPress={this.navigateToScreen('Principal')}>
-                          Novedad
+                          Nuevo
                       </Text>
                       {categorias.map(x => (
                           <Text

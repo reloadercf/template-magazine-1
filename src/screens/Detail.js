@@ -10,25 +10,27 @@ const DEVICE_HEIGHT = Dimensions.get('window').height;
 class Detail extends Component {
      
     render() {
-
-        const{articulo}=this.props.navigation.state.params
-        console.log(articulo)
+        const articulo=this.props.navigation.getParam('data');
+        console.log(articulo.id)
         if(!articulo){
             return null
         }
         return (
-            <ScrollView contentContainerStyle={styles.container}>
-                <View  style={{ width: DEVICE_WIDTH, height: DEVICE_HEIGHT/2, marginBottom: 5 }} >
-                                <Image source={{ uri: articulo.imagen }} style={{
-                                    width:DEVICE_WIDTH, height: "100%", resizeMode: 'contain'
-                                }} />
-                                
-                </View>
-                <View style={{}}>
-                    <Text style={styles.text}>{articulo.titulo}</Text>
-                </View>
-                   
-            </ScrollView>
+            <View style={styles.container}>
+                <ScrollView >
+                    <View style={{ width: DEVICE_WIDTH, height: DEVICE_HEIGHT / 2.5, marginBottom: 5 }} >
+                        <Image source={{ uri: articulo.imagen }} style={{
+                            width: DEVICE_WIDTH, height: "100%", resizeMode: 'contain'
+                        }} />
+
+                    </View>
+                    <View style={{}}>
+                        <Text style={styles.text}>{articulo.titulo}</Text>
+                    </View>
+
+                </ScrollView>
+            </View>
+           
         );
     }
 }
@@ -36,12 +38,8 @@ class Detail extends Component {
 // define your styles
 const styles = StyleSheet.create({
     container: {
-        //flex:1,
-        display:"flex",
-        flexDirection:"column",
-        flexWrap:"wrap",
-        justifyContent:"center",
-        backgroundColor: '#000',
+        flex:1,
+        backgroundColor:"#000"
     },
     text:{
         color:"#fff"

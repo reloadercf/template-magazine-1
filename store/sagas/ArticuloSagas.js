@@ -3,18 +3,22 @@ import {obtenerArticulosPortadaFalse, putArticulosCategoria} from '../actions/Ar
 import CONSTANTES from '../constantes';
 
 let ArticulosPortadaFalse = () =>
-  fetch(`${CONSTANTES.revista}/articulos/Lista-de-especiales/`, {
+  fetch(`${CONSTANTES.revista}/articulos/Lista-de-articulos/`, {
     method: 'GET',
   }).then(response => response.json());
 
 function* generadoraArticulosPortadaFalse() {
   try {
     let ArticulosPFalse = yield call(ArticulosPortadaFalse);
+
+    console.log(ArticulosPFalse)
     yield put(obtenerArticulosPortadaFalse(ArticulosPFalse));
+
   } catch (error) {
-    console.log('error al obtener Articulos en portada');
+    console.log(error);
   }
 }
+
 
 let getArticulosCategoria=(idCategoria)=> fetch(`${CONSTANTES.revista}/articulos/Lista-de-articulos/?idcategoria=${idCategoria}`,
 {

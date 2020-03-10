@@ -8,6 +8,7 @@ import {
   Text,
 } from 'react-native';
 import { Colors,Typography } from '../styles';
+import CardCarrousel from './CardCarrousel';
 
   const DEVICE_WIDTH = Dimensions.get('window').width;
   
@@ -36,7 +37,7 @@ export default class Carrousel extends Component {
                     x:DEVICE_WIDTH*this.state.selectedIndex
                 }) 
             })
-      }, 3000);
+      }, 2500);
   }
 
 
@@ -51,7 +52,7 @@ export default class Carrousel extends Component {
 
   render() {
       const{selectedIndex}=this.state
-      const{articulos}=this.props
+      const{articulos, navigation}=this.props
     return (
         <View style={styles.container}>
             <ScrollView
@@ -61,20 +62,19 @@ export default class Carrousel extends Component {
                 ref={this.scrollRef}
             >
                 {articulos.map((articulo, key) => (
-                    <View key={key} style={styles.carrousel}>
-                        <Image source={{ uri: articulo.imagen }} style={{
-                            width: DEVICE_WIDTH, height: "100%", resizeMode: 'contain'
-                        }} />
-
-                        <Text style={styles.titulo}>{articulo.titulo}</Text>
-                    </View>
+                  <View key={key} style={styles.carrousel}>
+                    <CardCarrousel articulo={articulo} onClick={() =>
+                      navigation.navigate('Detail', {data: articulo})
+                  } />
+                  </View>
+ 
                 ))}
             </ScrollView>
-            <View style={styles.circleDiv}>
+            {/* <View style={styles.circleDiv}>
                 {
                     articulos.map((article, i) => <View key={i} style={[styles.whiteCircle, { opacity: i === selectedIndex ? 0.5 : 1 }]} />)
                 }
-            </View>
+            </View> */}
         </View>
     );
   }
@@ -86,17 +86,13 @@ const styles = StyleSheet.create({
   
     carrousel:{
       width:DEVICE_WIDTH,
-      position:"relative", 
- 
+      position:"relative",
+      display:"flex",
+      flexDirection:"row",
+      justifyContent:"center",
+      alignItems:"center", 
     },
-    titulo:{
-      position:"absolute",
-      top:"65%",
-      backgroundColor:"#000",
-      padding:5,
-      ...Typography.headerText
- 
-    },
+   
    container: {
      height: "100%",
      width: "100%",
