@@ -1,14 +1,13 @@
 //import liraries
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, ScrollView, Dimensions,Image } from 'react-native';
-
+import HeaderDetail from '../containers/HeaderDetail'
 // create a component
 
 const DEVICE_WIDTH = Dimensions.get('window').width;
 const DEVICE_HEIGHT = Dimensions.get('window').height;
 
 class Detail extends Component {
-     
     render() {
         const articulo=this.props.navigation.getParam('data');
         console.log(articulo.id)
@@ -18,12 +17,13 @@ class Detail extends Component {
         return (
             <View style={styles.container}>
                 <ScrollView >
-                    <View style={{ width: DEVICE_WIDTH, height: DEVICE_HEIGHT / 2.5, marginBottom: 5 }} >
-                        <Image source={{ uri: articulo.imagen }} style={{
-                            width: DEVICE_WIDTH, height: "100%", resizeMode: 'contain'
-                        }} />
-
-                    </View>
+                    <HeaderDetail
+                        image={articulo.imagen}
+                        navigation={this.props.navigation}
+                        title={articulo.titulo}
+                        categoria={articulo.categoria}
+                        />
+                    
                     <View style={{}}>
                         <Text style={styles.text}>{articulo.titulo}</Text>
                     </View>
