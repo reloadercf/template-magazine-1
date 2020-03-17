@@ -6,6 +6,7 @@ import {View, StyleSheet, Image, Platform,Text} from 'react-native';
 // } from 'react-native-responsive-screen';
 import {Appbar} from 'react-native-paper';
 import SubtituloSection from '../components/SubtituloSection';
+import TituloArticulo from '../components/TituloArticulo';
 //import TextSection from '../components/titleSection';
 
 const HeaderDetail = props => {
@@ -25,11 +26,11 @@ const HeaderDetail = props => {
       </View>
       <Image style={styles.ImageHeader} source={{ uri: props.image }} />
       <View style={styles.StyleButtonTitle}>
-        <SubtituloSection texto={props.title}/>
+        <TituloArticulo texto={props.title}/>
       </View>
-      <View style={styles.StyleButtonTitle}>
+      {/* <View style={styles.StyleButtonTitle}>
         <SubtituloSection texto={props.categoria.nombre_categoria}/>
-      </View>
+      </View> */}
     </Appbar.Header>
   );
 };

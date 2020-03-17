@@ -46,8 +46,8 @@ export const bodyText = {
   color: Colors.baseText,
   fontSize: baseFontSize,
   textAlign:"center",
-  lineHeight: 20,
-  padding: Spacing.large,
+  //lineHeight: 20,
+  //padding: Spacing.large,
 }
 
 

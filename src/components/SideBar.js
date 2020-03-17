@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
-import {View,StyleSheet, ScrollView, ImageBackground, Dimensions, Text} from 'react-native'
+import {View,StyleSheet, ScrollView, ImageBackground, Dimensions, Text, TouchableOpacity} from 'react-native'
 import { NavigationActions} from 'react-navigation';
+import Icon from 'react-native-vector-icons/MaterialIcons';
+import { Typography } from '../styles';
 import {connect} from 'react-redux'
 import mexico from '../assets/mexico.png'
 import { actionGetConfig } from '../../store/actions/ConfigActions';
 import ProfilePicture from './ProfilePicture';
+
 
 
 class SideBar extends Component {
@@ -22,26 +25,22 @@ class SideBar extends Component {
                   <View style={styles.container}>
                       <View style={{marginBottom:20}}>
                         <ProfilePicture/>
-                      </View>   
-                      <Text
-                          style={styles.menuItem}
-                          onPress={this.navigateToScreen('Principal')}>
-                          Inicio
-                      </Text>
-                      <Text
-                          style={styles.menuItem}
-                          onPress={this.navigateToScreen('Principal')}>
-                          Buscar
-                      </Text>
-                      <Text style={[styles.menuItem, styles.textIntereses]}>Tus Intereses</Text>
+                      </View> 
+                      <TouchableOpacity style={styles.menuItem}  onPress={this.navigateToScreen('Principal')}>
+                          <Icon name="home" size={20} color="#fff" />
+                          <Text style={styles.titulo}>Inicio</Text>
+                      </TouchableOpacity> 
+                      <TouchableOpacity style={styles.menuItem}  onPress={this.navigateToScreen('Search')}>
+                          <Icon name="search" size={20} color="#fff" />
+                          <Text style={styles.titulo}>Buscar</Text>
+                      </TouchableOpacity> 
+                     
+                      <Text style={[styles.titulo, styles.textIntereses]}>Tus Intereses</Text>
                       {categorias.map(x => (
-                          <Text
-                              key={x.id}
-                              style={styles.menuItem}
-                              onPress={this.navigateToScreen('Categoria', { idCategoria: x.id })}
-                          >
-                              {x.nombre_categoria}
-                          </Text>
+                          <TouchableOpacity key={x.id} style={styles.menuItem} onPress={this.navigateToScreen('Categoria', { idCategoria: x.id })}>
+                              <Icon name="panorama-fish-eye" size={20} color="#fff" />
+                              <Text style={styles.titulo}> {x.nombre_categoria}</Text>
+                          </TouchableOpacity> 
                       ))}
                   </View>
               </ImageBackground>
@@ -56,14 +55,20 @@ const styles=StyleSheet.create({
         flex:1
     },
     menuItem:{
-        fontSize: 18, 
-        lineHeight: 20, 
-        textAlign: 'left', 
+        display:"flex",
+        flexDirection:"row",
+        justifyContent:"flex-start",
+        alignItems:"center",
         marginLeft: 20, 
-        marginBottom: 30, 
-        fontWeight: '400',
-        letterSpacing:2,
+        marginBottom:10
+    },
+    titulo:{
         color:"#fff",
+        fontWeight: "bold",
+        letterSpacing:1,
+        marginLeft:5,
+        ...Typography.bodyText
+  
     },
     textIntereses:{
         marginLeft: 0, 

@@ -38,7 +38,6 @@ const HomePrincipal = (props) => {
 
   return (
     <View style={{ backgroundColor: "#0E0E0E", flex: 1 }}>
-
       <ScrollView style={styles.scrollview}>
         <HeaderDefault navigation={props.navigation} />
         <TitulosSection texto="Bienvenido"/> 
@@ -58,12 +57,7 @@ const HomePrincipal = (props) => {
           <SubtituloSection texto="Recomedados para ti"/>
           <Slider data={articulosPortadaFalse} navigation={props.navigation} />
         </View>
-        
-    
-
       </ScrollView>
-
-
     </View>
   );
       };

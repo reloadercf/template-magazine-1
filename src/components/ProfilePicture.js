@@ -12,7 +12,7 @@ const ProfilePicture = ({image, Nombre}) => (
 
 const styles=StyleSheet.create({
     container:{
-        backgroundColor:"#1E2227",
+        //backgroundColor:"#1E2227",
         display:"flex",
         justifyContent:"center",
         flexDirection:"column",

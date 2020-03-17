@@ -1,17 +1,18 @@
-import React from 'react';
+import React, { useEffect,useState } from 'react';
 import {StyleSheet, View, Text, ScrollView} from 'react-native';
-import CardCurso from './CardCurso';
+import { Colors,Typography } from '../styles';
+import CardArticulo from '../components/CardArticulo';
 
-const SliderCursos = (props) => {
+const SliderVertical = (props) => {
     return (
-        <ScrollView horizontal={true}>
+        <ScrollView  style={styles.containerScrooll} >
             {
                 props.data && props.data.length > 0 ?
                     props.data.map(articulo => (
                         <View style={styles.containerCard}>
-                            <CardCurso articulo={articulo} onClick={() =>
+                            <CardArticulo articulo={articulo} onClick={() =>
                                 props.navigation.navigate('Detail', { data: articulo })
-                            } />
+                            } />         
                         </View>
                     ))
                     :
@@ -23,11 +24,19 @@ const SliderCursos = (props) => {
     );
 };
 const styles = StyleSheet.create({
+    containerScrooll:{
+        display:"flex",
+        flexDirection:"row",
+        flexWrap:"wrap",
+       backgroundColor:"#fff",
+       width:"100%"
+    },
     containerCard:{
         marginVertical:15,
         marginHorizontal:15,
-        width:250,
+        width:150,
+       
     },
    
   });
-export default  SliderCursos
+export default  SliderVertical

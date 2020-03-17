@@ -62,7 +62,7 @@ class HeaderDefault extends Component {
               this.props.navigation.closeDrawer();
             }, 2000);
           }}>
-          <FontAwesome5 name="bars" size={24} color="#fff" />
+          <FontAwesome5 name="search" size={24} color="#fff" />
         </TouchableOpacity>
       </SafeAreaView> 
     );

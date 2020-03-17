@@ -20,50 +20,7 @@ import { getArticulosCategoria } from '../../store/actions/ArticuloActions';
 import mxopportunity from '../assets/mxopportunity.png'
 import HeaderDefault from '../components/HeaderDefault';
 
-const articles=[
-  {
-      id:1,
-      imagen:"https://images.pexels.com/photos/1565982/pexels-photo-1565982.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
-      titulo:"Articulo 1"
-  },
-  {
-    id:2,
-    imagen:"https://images.pexels.com/photos/1099680/pexels-photo-1099680.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
-    titulo:"Articulo 2"
-  },
-  {
-    id:3,
-    imagen:"https://images.pexels.com/photos/675951/pexels-photo-675951.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
-    titulo:"Articulo 3"  
-  },
-  {
-    id:4,
-    imagen:"https://images.pexels.com/photos/675951/pexels-photo-675951.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
-    titulo:"Articulo 3"  
-  },
-  {
-    id:5,
-    imagen:"https://images.pexels.com/photos/675951/pexels-photo-675951.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
-    titulo:"Articulo 3"  
-  },
-  {
-    id:6,
-    imagen:"https://images.pexels.com/photos/675951/pexels-photo-675951.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
-    titulo:"Articulo 3"  
-  },
-  {
-    id:7,
-    imagen:"https://images.pexels.com/photos/675951/pexels-photo-675951.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
-    titulo:"Articulo 3"  
-  },
-  {
-    id:8,
-    imagen:"https://images.pexels.com/photos/675951/pexels-photo-675951.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
-    titulo:"Articulo 3"  
-  },
-  
- 
-]
+
 
 const DEVICE_WIDTH = Dimensions.get('window').width;
 const DEVICE_HEIGHT = Dimensions.get('window').height;

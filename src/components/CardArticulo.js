@@ -3,7 +3,7 @@ import { Text, View, StyleSheet, Image,Dimensions, TouchableOpacity } from 'reac
 import { Colors,Typography } from '../styles';
 
 const CardArticulo = ({articulo, onClick}) => (
-    <TouchableOpacity style={styles.container} onPress={onClick}>
+    <TouchableOpacity onPress={onClick}>
         <View style={styles.articulo}>
             <Image source={{ uri: articulo.imagen }} style={styles.image} />
             <Text style={styles.titulo}>{articulo.titulo}

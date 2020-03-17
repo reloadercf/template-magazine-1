@@ -6,11 +6,13 @@ import SideBar from '../components/SideBar';
 import Detail from '../screens/Detail';
 import HomePrincipal from '../screens/HomePrincipal';
 import Categoria from '../screens/Categoria';
+import Search from '../screens/Search';
 
 const StackPrincipal = createStackNavigator(
   {
     Home: HomePrincipal,
     Detail: Detail,
+    //Search:Search
   },
   {
     headerMode: 'none',
@@ -32,6 +34,9 @@ const StackCategoria = createStackNavigator(
     Detail: {
       screen: Detail,
     },
+    Search:{
+      screen: Search,
+    }
   },
   {
     headerMode: 'none',
